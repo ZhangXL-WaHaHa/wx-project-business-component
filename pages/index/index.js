@@ -301,33 +301,11 @@ let aa = {
 var app = getApp()
 Page({
   data: {
-    logs: [],
-    starbg: '../../static/img/drawable-xxdpi/title-bar_collection_normal.png',
-    goodsH: 0,
-    chessRoomDetail: {}, //棋牌室的信息
-    mechine: {}, //被扫麻将机的信息
-    catHighLightIndex: 0, //左侧列表高亮的下标
-    scrollToGoodsView: 0,
-    toView: '',
-    toViewType: '',
-    GOODVIEWID: 'catGood_',
-    animation: true,
-    goodsNumArr: [0], //记录了每个类型商品占用的高度
-    shoppingCart: {}, //购物车物品id映射数量
-    shoppingCartGoodsId: [], //购物车里面的物品的id
-    goodMap: {}, //所有物品的列表
-    chooseGoodArr: [], //购物车的物品列表
-    totalNum: 0, //总数量
-    totalPay: 0, //总价
-    showShopCart: false, //购物列表是否展示
-    fromClickScroll: false, //标记左侧的滚动来源，false是来自于本身的滚动，true是点击引导的滚动,
-    timeStart: "",
-    timeEnd: "",
-    hideCount: true,
-    count: 0,
-    needAni: false,
-    hide_good_box: true,
-    url: "", //wx.getStorageSync('url')
+    goodList:[
+      {
+
+      }
+    ],
     ballAnimationArray: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], //小球动画
   },
   onReady: function () {
@@ -335,15 +313,11 @@ Page({
     // Do something when page ready.
     // 循环获取所有的小球节点
     for(let i = 0; i < this.data.ballAnimationArray.length; i++) {
-      // let id = `#ball-${i}`
-      // console.log('输出id', id)
-      // console.log('输出节点信息', this.selectComponent(id))
       // 获取小球节点信息
       this.ballAnimation = this.selectComponent(`#ball-${i}`)
       // 将小球信息存储
       this.ballComponent.push(this.ballAnimation)
     }
-    console.log('输出节点信息', this.ballComponent)
   },
   onLoad: function (options) {
     let systemInfo = wx.getStorageSync('systemInfo');
@@ -484,7 +458,7 @@ Page({
   touchOnGoods: function (e) {
     this.finger = {};
     var topPoint = {};
-    this.finger['x'] = e.touches["0"].clientX - 10; //点击的位置
+    this.finger['x'] = e.touches["0"].clientX - 10; //点击的位置，增加偏移位置改变小球出现的位置
     this.finger['y'] = e.touches["0"].clientY - 50;
 
     if (this.finger['y'] < this.busPos['y']) {
@@ -521,7 +495,7 @@ Page({
     index = len
 
     // 控制多个小球同时出现动画，需要判断上一个动画是否完成
-    // 数组循环，每次开启动画弹出一个数组里面，完成动画之后重新排队，队列思想
+    // 数组循环，每次开启动画弹出一个数组里面，完成动画之后重新排队
     // 多个动画同时出现,怎么控制是哪一个小球进行动画，小球动画完成之后，又怎么实现重新动画
     let id = this.data.ballAnimationArray.pop()
     // console.log('输出弹出的信息', id, this.data.ballAnimationArray)
