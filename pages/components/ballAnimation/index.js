@@ -1,0 +1,41 @@
+// pages/components/ballAnimation/index.js
+Component({
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+    // 小球的唯一表示
+    ballIndex: {
+      type: Number,
+      value: -1
+    }
+  },
+
+  observers: {
+    "ballIndex": function(newValue) {
+      console.log(newValue)
+    }
+  },
+
+  /**
+   * 组件的初始数据
+   */
+  data: {
+  },
+
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+    // 开启小球动画
+    // 需要参数: 小球运动关键帧
+    startAnimation(keyFrames) {
+      this.animate(".good_box", keyFrames, 200, function() {
+        // 动画结束回调
+        this.clearAnimation(".good_box", () => {
+          this.triggerEvent("endAnimation", this.properties.ballIndex)
+        })
+      }.bind(this))
+    }
+  }
+})

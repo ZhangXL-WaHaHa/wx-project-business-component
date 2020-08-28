@@ -1,0 +1,5 @@
+<!--pages/components/ballAnimation/index.wxml-->
+<!-- 小球动画 -->
+<view 
+  class="good_box" style="left: {{bus_x}}px; top: {{bus_y}}px;">
+</view>
