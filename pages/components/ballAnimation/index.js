@@ -21,6 +21,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    hide_good_box: true 
   },
 
   /**
@@ -29,12 +30,33 @@ Component({
   methods: {
     // 开启小球动画
     // 需要参数: 小球运动关键帧
+    // 创建两种同时进行的动画实现小球动画和购物车动画的无缝连接
     startAnimation(keyFrames) {
-      this.animate(".good_box", keyFrames, 200, function() {
-        // 动画结束回调
-        this.clearAnimation(".good_box", () => {
-          this.triggerEvent("endAnimation", this.properties.ballIndex)
+      this.setData({
+        hide_good_box: false
+      })
+      
+      this.animate(`#good_box-${this.properties.ballIndex}`, keyFrames, 200, function() {
+        // this.setData({
+        //   hide_good_box: true
+        // })
+        // // 回调
+        // this.triggerEvent("endAnimation", this.properties.ballIndex)
+        // // 清除good_box动画
+        // this.clearAnimation(".good_box")
+      }.bind(this))
+
+      // 同时创建两种动画
+      this.animate(".noExistent", [
+        { opacity : 0},
+        { opacity: 1}
+      ], 420, function () {
+        this.setData({
+          hide_good_box: true
         })
+        this.triggerEvent("endAnimation", this.properties.ballIndex)
+        // 清除good_box动画
+        this.clearAnimation(`#good_box-${this.properties.ballIndex}`)
       }.bind(this))
     }
   }

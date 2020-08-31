@@ -1,5 +1,8 @@
 <!--pages/components/ballAnimation/index.wxml-->
 <!-- 小球动画 -->
 <view 
-  class="good_box" style="left: {{bus_x}}px; top: {{bus_y}}px;">
+  id="good_box-{{ballIndex}}"
+  class="good_box" hidden="{{ hide_good_box}}" style="left: 0px; top: 0px;">
 </view>
+<!-- 虚拟存在，用于提前将动画结束，不产生卡坤 -->
+<view class="noExistent"></view>

@@ -32,8 +32,8 @@
     "packNpmRelationList": []
   },
   "compileType": "miniprogram",
-  "libVersion": "1.6.0",
-  "appid": "touristappid",
+  "libVersion": "2.12.1",
+  "appid": "wxce34079f80b15a54",
   "projectname": "bezier",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
