@@ -6,6 +6,8 @@ Page({
   data: {
     commodityList: [],
     ballAnimationArray: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], //小球动画
+    keyFrames: [], //动画帧
+    bus_y: -20, //手指点击的位置
   },
 
   onLoad: function () {
@@ -40,87 +42,40 @@ Page({
   },
 
   tapAdd(e) {
-    let points = ballFallAnimation.touchOnGoods({
-      x: e.touches["0"].clientX - 10,
-      y: e.touches["0"].clientY - 50
-    }, this.busPos, 80)
+    // 简单判断手指点击位置是否是上次点击的位置，若是，直接是用上一次计算的关键帧数组
+    // console.log('输出当前点击为位置', this.data.bus_y, e.touches["0"].clientY)
+    if (Math.abs(this.data.bus_y - e.touches["0"].clientY) > 20) {
+      this.data.keyFrames = []
+      this.data.bus_y = e.touches["0"].clientY
+      let points = ballFallAnimation.touchOnGoods({
+        x: e.touches["0"].clientX - 10,
+        y: e.touches["0"].clientY - 50
+      }, this.busPos, 80)
+      var index = 0,
+        bezier_points = points['bezier_points'];
 
-    this.startAnimation(points)
+      var len = bezier_points.length;
+      index = len
+
+      // 放入关键帧
+      for (let i = index - 1; i > -1; i--) {
+        this.data.keyFrames.push({
+          left: bezier_points[i]['x'] + 'px',
+          top: bezier_points[i]['y'] + 'px',
+          opacity: i === 0 ? 0 : 1,
+          offset: 0.4
+        })
+      }
+    }
+    this.startAnimation()
   },
 
-  startAnimation: function (points) {
-    let keyFrames = []
-    let otherKeyFrames = []
-
-    var index = 0,
-      bezier_points = points['bezier_points'];
-
-    var len = bezier_points.length;
-    index = len
-
-    // 控制多个小球同时出现动画，需要判断上一个动画是否完成
+  startAnimation: function () {
     // 数组循环，每次开启动画弹出一个数组里面，完成动画之后重新排队
     let id = this.data.ballAnimationArray.pop()
 
-    // 放入关键帧
-    for (let i = index - 1; i > -1; i--) {
-      keyFrames.push({
-        left: bezier_points[i]['x'] + 'px',
-        top: bezier_points[i]['y'] + 'px',
-        offset: 0.4
-      })
-    }
+    this.ballComponent[id].startAnimation(this.data.keyFrames)
 
-    // 创建多个小球节点实现小球的动画
-    // console.log('输出关键帧', keyFrames)
-
-    // // 创建小球动画  
-    // this.animate(`#ball-${id}`, keyFrames, 100, function () {
-    //   this.addGoodToCartFn(e)
-
-    //   // 每次完成动画清空之后放进去  基本可以实现连续小球动画，但是连续点击，小球动画会有明显的卡顿
-    //   // 原因未明
-    //   // 考虑使用小球动画组件  效果基本一致
-
-    //   this.clearAnimation(`#ball-${id}`, () => {
-    //     console.log('经过这一步')
-    //     // 动画完成，将数据重新放入数组中
-    //     this.data.ballAnimationArray.unshift(id)
-
-    //   })
-    // }.bind(this))
-
-    // 开启小球组件动画,连续点击效果也还是会卡顿
-    this.ballComponent[id].startAnimation(keyFrames)
-
-    // 使用小球
-
-    // 
-    // 创建时间间隔
-    // setTimeout(() =>{
-    //   // 创建第二个动画
-    //   this.animate(`#ball-${2}`, keyFrames, 100, function() {
-    //     this.addGoodToCartFn(e)
-
-    //   }.bind(this))
-    // }, 100)
-    // this.timer = setInterval(function () {
-    //   for(let i = index - 1; i > -1; i--) {
-    //     console.log('输出数据', bezier_points[i]['x'])
-    //     that.setData({
-    //       bus_x: bezier_points[i]['x'],
-    //       bus_y: bezier_points[i]['y']
-    //     })
-
-    //     if (i < 1) {
-    //       clearInterval(that.timer);
-    //       that.addGoodToCartFn(e);
-    //       that.setData({
-    //         hide_good_box: true
-    //       })
-    //     }
-    //   }
-    // }, 25);
   },
 
   // 小球组件动画结束
@@ -131,6 +86,7 @@ Page({
     this.startShopCartAnimation()
 
     // 处理事件逻辑
+    // Tip: 后续事件逻辑最好少使用setData,不然在低端机上表现起来会很不流畅
   },
 
   // 创建购物车动画
@@ -148,7 +104,7 @@ Page({
         scale: [1, 1]
       }
     ], 400, function () {
-      
+
     }.bind(this))
   },
 

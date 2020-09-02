@@ -10,6 +10,7 @@
   left: 50%;
   top: 50%;
   z-index: +99;
+  opacity: 1;
   background:rgba(0,133,207,1);
 }
 

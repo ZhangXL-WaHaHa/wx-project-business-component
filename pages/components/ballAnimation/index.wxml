@@ -4,5 +4,3 @@
   id="good_box-{{ballIndex}}"
   class="good_box" hidden="{{ hide_good_box}}" style="left: 0px; top: 0px;">
 </view>
-<!-- 虚拟存在，用于提前将动画结束，不产生卡坤 -->
-<view class="noExistent"></view>
