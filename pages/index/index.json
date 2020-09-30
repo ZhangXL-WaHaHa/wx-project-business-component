@@ -1,9 +1,3 @@
 {
-  "navigationBarTitleText": "棋牌室信息",
-  "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#0085CF",
-  "navigationBarTextStyle": "black",
-  "usingComponents": {
-    "ball-animation": "../components/ballAnimation/index"
-  }
+  "usingComponents": {}
 }

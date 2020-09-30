@@ -1,0 +1,9 @@
+{
+	"navigationBarBackgroundColor": "#36CFC9",
+	"navigationStyle": "custom",
+	"navigationBarTitleText": "透明渐变导航栏",
+	"backgroundColor": "#36CFC9",
+	"usingComponents": {
+		"van-nav-bar": "@vant/weapp/nav-bar/index"
+	}
+}

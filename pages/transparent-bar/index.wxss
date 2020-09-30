@@ -1,0 +1,52 @@
+/* 自定义导航栏样式 */
+.navigate-title {
+	font-size: 30rpx !important;
+	color: white !important;
+}
+
+.navigate-fixed-color {
+	background-color: transparent !important;
+}
+
+/* 实现渐变 */
+.gradient-naviagte {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 9998;
+	background-color: #36CFC9;
+	opacity: 0;
+}
+
+/* 监听器 */
+.scroll-monitor-line-leave,
+.scroll-monitor-line {
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.hide-navigate-background {
+	opacity: 0 !important;
+}
+
+/* 顶部图片 */
+.top-image {
+	width: 100%;
+	height: 380rpx;
+}
+
+/* 长图 */
+.long-image {
+	width: 100%;
+	height: 3000rpx;
+	margin-top: 20rpx;
+}
+
+/* 修改vant-ui样式 */
+.van-icon {
+	color: white !important;
+}

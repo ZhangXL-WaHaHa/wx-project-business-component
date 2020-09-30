@@ -1,0 +1,27 @@
+<!-- 引用wxs -->
+<wxs module="navigate" src="./index.wxs"></wxs>
+
+<!-- 设置底部的渐变 -->
+<view 
+	class="gradient-naviagte change-color {{ changeOpacity ? 'hide-navigate-background' : ''}}" 
+	style="height: {{statusBarHeight + 44}}px;"></view>
+<!-- 自定义导航栏,使用vant-ui组件 -->
+<van-nav-bar 
+	id="custom-navigate" left-arrow title="透明渐变导航栏" fixed="{{ true }}"
+	z-index="9999"
+	custom-class="navigate-fixed-color" title-class="navigate-title"
+	border="{{false}}" bind:click-left="goBack"></van-nav-bar>
+
+<scroll-view 
+	scroll-y style="height: {{pageHeight}}px;background-color: #F5F5F5;" data-value="{{scrollHeight}}"
+	bindscroll="{{navigate.pageScroll}}">
+	<!-- 设置长度为1px的细线在顶部，解决有时滚动过快时，没有监听到滚动到顶部的官方bug -->
+	<view class="scroll-monitor-line" wx:if="{{ platform !== 'ios' }}"></view>
+	<view class="scroll-monitor-line-leave" style="top: {{ monitorLeaveLine }}px" wx:if="{{ platform !== 'ios' }}"></view>
+
+	<image src="{{topImage}}" class="top-image"></image>
+
+	<!-- 长图占位 -->
+	<image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1601296054389&di=3cc2a96bb53bd415c38e536e04a6c09f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170215%2F6f18974e60ce4cd8be3afd975851d1b5_th.jpeg"
+	 class="long-image"></image>
+</scroll-view>

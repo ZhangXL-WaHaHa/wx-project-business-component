@@ -1,0 +1,28 @@
+// 滚动到顶部事件
+// 慢慢滚动，安卓端监听到滚动到顶部事件多次，导致动画闪烁，猜测是官方bug
+// 快速滚动，bindscroll没有监听到滚动到顶部，导致有时候滚动到顶部，导航栏的背景色不是透明，猜测是官方bug
+// 解决办法：安卓端在页面的顶部和底部设置线条，使用IntersectionObserver监听两条线条进入显示区域来判断当前的是否滚动到顶部
+// 暂时想不到完美的办法解决，只能不完美的解决或者换种实现方式
+var pageScroll = function(e, ins) {
+	// 传值，图片高度
+	var data = {
+		imageHeight: e.target.dataset.value
+	}
+
+	var scrollTop = e.detail.scrollTop
+	// console.log('输出高度', scrollTop)
+
+	if (scrollTop >= data.imageHeight) {
+		ins.selectComponent('.change-color').setStyle({
+			opacity: 1
+		})
+	} else {
+		ins.selectComponent('.change-color').setStyle({
+			opacity: Math.max(0, (scrollTop) / data.imageHeight)
+		})
+	}
+}
+
+module.exports = {
+	pageScroll: pageScroll,
+}
