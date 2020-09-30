@@ -1,5 +1,5 @@
 <!--pages/index/index.wxml-->
 <view class="container">
 	<button bindtap="handleBallAnimation" class="btn">小球掉落动画</button>
-	<button bindtap="handleTransparentBar"class="btn">透明渐变导航栏</button>
+	<button bindtap="handleTransparentBar" class="btn">透明渐变导航栏</button>
 </view>

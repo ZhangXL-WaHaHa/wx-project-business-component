@@ -13,14 +13,16 @@ Page({
 		platform: app.globalData.systemInfo.platform, //手机系统
 		statusBarHeight: app.globalData.systemInfo.statusBarHeight, //手机顶部状态栏的高度
 		pageHeight: app.globalData.systemInfo.screenHeight, //整个页面的高度
-		monitorLeaveLine: app.globalData.systemInfo.windowHeight + app.globalData.systemInfo.statusBarHeight + 45,
+		monitorLeaveLine: 0,
 		scrollHeight: 0, //渐变导航栏显示的距离
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad: function(options) {},
+	onLoad: function(options) {
+		
+	},
 
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
@@ -30,6 +32,7 @@ Page({
 		wx.createSelectorQuery().in(this).select('.top-image').boundingClientRect((temp) => {
 			this.setData({
 				scrollHeight: temp.height - this.data.statusBarHeight - 44,
+				monitorLeaveLine: wx.getSystemInfoSync().windowHeight
 			})
 		}).exec()
 
