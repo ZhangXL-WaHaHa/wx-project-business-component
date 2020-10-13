@@ -57,4 +57,10 @@
 			fixRow="{{ true }}" title="选择团期" calendarType="range" selectDateRangeSize="10"
 			dateText="{{showDataText}}" bind:finishSelectDate="finishSelectDate"></calendar>
 	</van-popup>
+
+
+	<!-- 不显示弹出层 -->
+	<calendar 
+			fixRow="{{ true }}" title="选择团期" calendarType="range" selectDateRangeSize="10"
+			dateText="{{showDataText}}" bind:finishSelectDate="finishSelectDate"></calendar>
 </view>

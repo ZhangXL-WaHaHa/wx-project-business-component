@@ -48,8 +48,8 @@ Page({
 		selectDateRange: {
 			begin: '',
 			end: '',
-			beginText: '',
-			endText: ''
+			beginText: '出发',
+			endText: '离开'
 		},  //范围选择预设值
 		selectDate: '2020-10-16',
 	},

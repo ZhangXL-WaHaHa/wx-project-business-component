@@ -4,7 +4,7 @@ import holiday from "holiday.js"
 
 const DAY_TYPE = ['last', 'cur', 'next'] //类型，分为上月，本月和下个月
 const DATE_TYPE = ['between', 'select', 'unSelect']
-let preHeight = 999
+let preHeight = 999  //记录上一次高度，实现过渡动画
 
 Component({
 	/**
