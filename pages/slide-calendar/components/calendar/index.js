@@ -291,18 +291,13 @@ Component({
 			}
 			let next_value = total * 7 - date.list.length
 
-			// 设置滚动框的高度,设置变化的过度动画
+			// 设置滚动框的高度,设置变化的过渡动画
 			date.swiperHeight = total * 107
 			for (let i = 1; i <= next_value; i++) {
 				date.list.push({
 					value: this.properties.showRemnantDays ? i : '',
 					type: 'next'
 				})
-			}
-
-			//	判断是否有天，如果有，设置一开始选中的号数
-			if (date.day) {
-				date.select = date.firstDayWeek + date.day - 1
 			}
 
 			//	格式化显示的提示信息
