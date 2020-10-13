@@ -55,6 +55,7 @@
 		show="{{ showRange }}" bind:close="onClose" position="bottom">
 		<calendar 
 			fixRow="{{ true }}" title="选择团期" calendarType="range" selectDateRangeSize="10"
+			selectDateRange="{{selectDateRange}}"
 			dateText="{{showDataText}}" bind:finishSelectDate="finishSelectDate"></calendar>
 	</van-popup>
 

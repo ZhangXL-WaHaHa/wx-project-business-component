@@ -3,7 +3,7 @@ import dateUtil from "dateUtil.js"
 import holiday from "holiday.js"
 
 const DAY_TYPE = ['last', 'cur', 'next'] //类型，分为上月，本月和下个月
-const DATE_TYPE = ['between', 'select', 'unSelect']
+// const DATE_TYPE = ['between', 'select', 'unSelect']
 let preHeight = 999  //记录上一次高度，实现过渡动画
 
 Component({
@@ -90,7 +90,9 @@ Component({
 			type: Array,
 			value: [{
 				value: '2020-08-09',
-				text: '售'
+				text: '售',
+				type: 'tag',  //提示文案类型，目前只提供text(文本类型)和tag(标签类型)
+				color: ''
 			}]
 		},
 
