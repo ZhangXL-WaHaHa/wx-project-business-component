@@ -456,14 +456,34 @@ Component({
 				})
 			} else {
 				// 判断结束位置是否是在起始位置的前面，若是，清空退出
+				// 结束位置在起始位置的前面，将该位置设置为新的起始位置，退出
 				this.properties.selectDateRange.end = date.year + '-' + date.month + '-' + date.list[index].value
 				let beginTimeStamp = new Date(this.properties.selectDateRange.begin.replace(/-/g, '/')).getTime()
 				let endTimeStamp = new Date(this.properties.selectDateRange.end.replace(/-/g, '/')).getTime()
 
 				if (beginTimeStamp > endTimeStamp) {
+					// 清空已经设置的位置
+					// this.properties.selectDateRange = {
+					// 	...this.properties.selectDateRange,
+					// 	begin: '',
+					// 	end: ''
+					// }
+					// Object.keys(this.data.calendarInfo).forEach((item) => {
+					// 	this.data.calendarInfo[item].list.forEach((arr, len) => {
+					// 		if (arr.color === 'select') {
+					// 			arr.color = 'unSelect'
+					// 			delete arr.rangTip
+					// 			this.setData({
+					// 				[`calendarInfo.${item}.list[${len}]`]: this.data.calendarInfo[item].list[len]
+					// 			})
+					// 		}
+					// 	})
+					// })
+
+					// 重新设置开始位置
 					this.properties.selectDateRange = {
 						...this.properties.selectDateRange,
-						begin: '',
+						begin: date.year + '-' + date.month + '-' + date.list[index].value,
 						end: ''
 					}
 					Object.keys(this.data.calendarInfo).forEach((item) => {
@@ -472,7 +492,9 @@ Component({
 								arr.color = 'unSelect'
 								delete arr.rangTip
 								this.setData({
-									[`calendarInfo.${item}.list[${len}]`]: this.data.calendarInfo[item].list[len]
+									[`calendarInfo.${item}.list[${len}]`]: this.data.calendarInfo[item].list[len],
+									[`calendarInfo.${key}.list[${index}].color`]: 'select',
+									[`calendarInfo.${key}.list[${index}].rangTip`]: this.properties.selectDateRange.beginText,
 								})
 							}
 						})
