@@ -8,6 +8,7 @@ Page({
 		ballAnimationArray: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], //小球动画
 		keyFrames: [], //动画帧
 		bus_y: -20, //手指点击的位置
+		finishShopCarAnimation: true,  //购物车动画是否结束
 	},
 
 	onLoad: function() {
@@ -91,6 +92,11 @@ Page({
 
 	// 创建购物车动画
 	startShopCartAnimation() {
+		// 动画没结束，不执行
+		if(!this.data.finishShopCarAnimation) {
+			return ;
+		}
+		this.data.finishShopCarAnimation = false
 		this.animate("#shopCart", [{
 				scale: [0.8, 0.8]
 			},
@@ -104,7 +110,7 @@ Page({
 				scale: [1, 1]
 			}
 		], 400, function() {
-
+			this.data.finishShopCarAnimation = true
 		}.bind(this))
 	},
 
