@@ -25,7 +25,7 @@
 	<swiper circular="{{ true }}" current="{{showCalendarIndex}}" id="calendar"
 		style="height: {{calendarInfo[dayType[showCalendarIndex]].swiperHeight}}rpx">
 		<block wx:for="{{calendarInfo}}" wx:for-item="arr" wx:for-index="temp">
-			<swiper-item catchtouchmove="{{ false }}">
+			<swiper-item catchtouchmove="gestureSlide">
 				<view class="calendar-data-box">
 					<view wx:for="{{ arr.list }}" class="calendar-data-item calendar-data-color-{{item.color}}"
 						data-index="{{index}}" data-type="{{item.type}}" data-key="{{temp}}" bindtap="selectDate">

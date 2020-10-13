@@ -662,6 +662,11 @@ Component({
 				default:
 					this.triggerEvent('finishSelectDate', this.properties.selectDate)
 			}
+		},
+
+		// 手指滑动日历
+		gestureSlide() {
+			return false;
 		}
 	}
 })
