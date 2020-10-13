@@ -35,6 +35,7 @@ Page({
 			{
 				value: '2021-2-8',
 				text: '余32',
+				type: 'text',
 				color: 'blue'
 			}
 		],  //日历上显示相关的提示
