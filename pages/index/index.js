@@ -76,5 +76,12 @@ Page({
 		wx.navigateTo({
 			url: '../transparent-bar/index'
 		})
+	},
+	
+	// 跳转到可滑动的日历
+	handleSlideCalendar() {
+		wx.navigateTo({
+			url: '../slide-calendar/index'
+		})
 	}
 })

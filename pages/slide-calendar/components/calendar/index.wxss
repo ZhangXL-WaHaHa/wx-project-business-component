@@ -1,0 +1,190 @@
+/* pages/components/calendar/index.wxss */
+page {
+	/* 日历标题颜色 */
+	--theme-title-color: #333333;
+	--theme-subtitle-color: #333333;
+
+	/* 周数文字颜色 */
+	--theme-week-text-color: #333333;
+	/* 日期文字显示，此为非本月数据显示 */
+	--theme-date-text-color: #999999;
+
+	/* 不同的选中状态颜色 */
+	--theme-select-color: rgba(255, 171, 34);
+	--theme-between-color: rgba(255, 171, 34, 0.3);
+	--theme-unselect-color: transparent;
+
+	/* 水印文案颜色 */
+	--theme-month-mark-color: rgba(242, 243, 245, .8);
+
+	/* 提示文案的颜色 */
+	--theme-date-tip-color: #333333;
+
+	/* 按钮颜色 */
+	--theme-btn-color: rgba(255, 100, 34, 1);
+	/* 点击态颜色 */
+	--theme-btn-hover-color: rgba(255, 100, 34, 0.8);
+}
+
+.calendar-container {
+	background-color: white;
+	border-radius: 20rpx 20rpx 0 0;
+	padding: 20rpx 0;
+}
+
+/* 日历开头 */
+.calendar-title {
+	font-size: 30rpx;
+	font-weight: 500;
+	color: var(--theme-title-color);
+	text-align: center;
+}
+
+.calnedar-subtitle-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 40rpx;
+}
+
+.calendar-icon-last,
+.calendar-icon-next {
+	width: 30rpx;
+	height: 30rpx;
+}
+
+.calendar-subtitle {
+	font-size: 28rpx;
+	color: var(--theme-subtitle-color);
+	margin: 0 20rpx;
+}
+
+.calendar-week-box {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.04);
+	margin-top: 20rpx;
+	z-index: 9
+}
+
+.calendar-data-item,
+.calendar-week-item {
+	position: relative;
+	width: 107rpx;
+	height: 107rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.calendar-data-cur-text,
+.calendar-week-text {
+	font-size: 28rpx;
+	color: var(--theme-week-text-color) !important;
+}
+
+.calendar-data-text {
+	font-size: 28rpx;
+	color: var(--theme-date-text-color);
+}
+
+/* 不同位置的提示文案 */
+.calendar-data-text-tip {
+	font-size: 22rpx;
+	color: var(--theme-date-tip-color)
+}
+
+.calendar-data-tag-tip {
+	width: 30rpx;
+	height: 30rpx;
+	font-size: 22rpx;
+	line-height: 30rpx;
+	text-align: center;
+	color: white;
+
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	z-index: -1;
+
+}
+
+/* 防止文案过长 */
+.line-1 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+}
+
+/* 选择日期范围起始文案提示 */
+.calendar-data-rang-tip {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9;
+
+	background-color: var(--theme-select-color);
+	color: white;
+	white-space: pre-wrap;
+	font-size: 28rpx;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* 日期选中的颜色 */
+.calendar-data-color-select {
+	background-color: var(--theme-select-color);
+}
+
+.calendar-data-color-between {
+	background-color: var(--theme-between-color);
+}
+
+.calendar-data-color-unSelect {
+	background-color: var(--theme-unselect-color);
+}
+
+/* 水印 */
+.calendar-data-month-mark {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: -1;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+	color: var(--theme-month-mark-color);
+	font-size: 160px;
+}
+
+/* 日历详情 */
+.calendar-data-box {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+/* 底部按钮 */
+.calendar-data-btn {
+	background-color: var(--theme-btn-color) !important;
+	color: white;
+	font-size: 28rpx;
+	white-space: nowrap;
+	width: 600rpx !important;
+	height: 80rpx !important;
+	text-align: center;
+	line-height: 80rpx;
+	border-radius: 45rpx;
+}
+
+.calendar-data-btn-hover {
+	background-color: var(--theme-btn-hover-color) !important;
+}

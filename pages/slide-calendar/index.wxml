@@ -1,0 +1,60 @@
+<!--index.wxml-->
+<view class="container">
+	<!-- <view class="userinfo">
+		<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+		<block wx:else>
+			<image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+			<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+		</block>
+	</view>
+	<view class="usermotto">
+		<text class="user-motto">{{motto}}</text>
+	</view> -->
+	<button bindtap="showCalendar">单选日历</button>
+	<button bindtap="showRangeCalendar" class="usermotto">区间范围选择日历</button>
+	<button bindtap="showMultipleCalendar" class="usermotto">多选日历</button>
+	
+	<!-- 单选弹框 -->
+	<van-popup 
+		round
+		show="{{ show }}" bind:close="onClose" position="bottom">
+		<calendar 
+			fixRow="{{ false }}" title="选择团期" showRemnantDays="{{ false }}" showHoliday="{{ true }}"
+			selectDate="{{selectDate}}" dateText="{{showDataText}}" bind:finishSelectDate="finishSelectDate"></calendar>
+	</van-popup>
+	
+	<!-- 多选弹框 -->
+	<van-popup
+		round
+		show="{{ showMultiple }}" bind:close="onClose" position="bottom">
+		<calendar 
+			fixRow="{{ true }}" title="选择团期" calendarType="multiple" btnText="立即下单"
+			selectDateMultiple="{{selectDateMultiple}}" beginTime="2020-01-01" showHoliday="{{true}}"
+			dateText="{{showDataText}}" bind:finishSelectDate="finishSelectDate"></calendar>
+	</van-popup>
+	
+	<!-- 范围选择弹框 -->
+	<!-- <van-popup
+		round
+		show="{{ showRange }}" bind:close="onClose" position="bottom">
+		<calendar 
+			fixRow="{{ true }}" title="选择团期" calendarType="range"
+			dateText="{{showDataText}}" bind:finishSelectDate="finishSelectDate"></calendar>
+	</van-popup> -->
+	<!-- 范围选择不显示起始文案 -->
+<!-- 	<van-popup
+		round
+		show="{{ showRange }}" bind:close="onClose" position="bottom">
+		<calendar 
+			fixRow="{{ true }}" title="选择团期" calendarType="range" selectDateRange="{{selectDateRange}}"
+			dateText="{{showDataText}}" bind:finishSelectDate="finishSelectDate"></calendar>
+	</van-popup> -->
+	<!-- 设置范围天数 -->
+	<van-popup
+		round
+		show="{{ showRange }}" bind:close="onClose" position="bottom">
+		<calendar 
+			fixRow="{{ true }}" title="选择团期" calendarType="range" selectDateRangeSize="10"
+			dateText="{{showDataText}}" bind:finishSelectDate="finishSelectDate"></calendar>
+	</van-popup>
+</view>

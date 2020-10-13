@@ -3,7 +3,8 @@
 		"pages/index/index",
 		"pages/ball-animation/index",
 		"pages/logs/logs",
-		"pages/transparent-bar/index"
+		"pages/transparent-bar/index",
+		"pages/slide-calendar/index"
 	],
 	"window": {
 		"backgroundTextStyle": "light",

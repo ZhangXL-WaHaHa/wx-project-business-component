@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+	  "van-popup": "@vant/weapp/popup/index",
+	  
+	  "calendar": "./components/calendar/index"
+  }
+}
