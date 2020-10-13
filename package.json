@@ -1,7 +1,6 @@
 {
-  "name": "wx-shopanimation",
+  "name": "wx-project-business-component",
   "version": "1.0.0",
-  "description": "代码参考来源：https://www.cnblogs.com/greengage/p/7815842.html",
   "main": "app.js",
   "dependencies": {
     "@vant/weapp": "^1.5.1"

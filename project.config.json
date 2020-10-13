@@ -34,7 +34,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.12.1",
   "appid": "wxce34079f80b15a54",
-  "projectname": "bezier",
+  "projectname": "小程序业务组件",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
