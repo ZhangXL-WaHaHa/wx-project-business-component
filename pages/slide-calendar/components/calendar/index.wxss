@@ -24,6 +24,9 @@ page {
 	--theme-btn-color: rgba(255, 100, 34, 1);
 	/* 点击态颜色 */
 	--theme-btn-hover-color: rgba(255, 100, 34, 0.8);
+
+	/* 设置选中日期圆角 */
+	--theme-select-date-radius: 10px
 }
 
 .calendar-container {
@@ -138,9 +141,18 @@ page {
 	align-items: center;
 	justify-content: center;
 }
+/* 设置不同类型的文案的圆角方向 */
+.calendar-begin-rang-tip-radius {
+	border-radius: var(--theme-select-date-radius) 0 0 var(--theme-select-date-radius);
+
+}
+.calendar-end-rang-tip-radius {
+	border-radius: 0 var(--theme-select-date-radius) var(--theme-select-date-radius) 0;
+}
 
 /* 日期选中的颜色 */
 .calendar-data-color-select {
+	border-radius: var(--theme-select-date-radius);
 	background-color: var(--theme-select-color);
 }
 

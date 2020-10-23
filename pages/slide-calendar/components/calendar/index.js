@@ -4,7 +4,7 @@ import holiday from "holiday.js"
 
 const DAY_TYPE = ['last', 'cur', 'next'] //类型，分为上月，本月和下个月
 // const DATE_TYPE = ['between', 'select', 'unSelect']
-let preHeight = 999  //记录上一次高度，实现过渡动画
+let preHeight = 999 //记录上一次高度，实现过渡动画
 
 Component({
 	/**
@@ -91,7 +91,7 @@ Component({
 			value: [{
 				value: '2020-08-09',
 				text: '售',
-				type: 'tag',  //提示文案类型，目前只提供text(文本类型)和tag(标签类型)
+				type: 'tag', //提示文案类型，目前只提供text(文本类型)和tag(标签类型)
 				color: ''
 			}]
 		},
@@ -502,6 +502,8 @@ Component({
 					return;
 				}
 
+				// 输出选择的日期
+				console.log('输出选择之后的日期 ==>', this.data.calendarInfo)
 				// 判断是否设置了起始位置和结束位置是否可以一致,没有，清空退出
 				if (!this.properties.allowSameDate && beginTimeStamp === endTimeStamp) {
 					// this.properties.selectDateRange = {
@@ -681,6 +683,31 @@ Component({
 				default:
 					this.triggerEvent('finishSelectDate', this.properties.selectDate)
 			}
+		},
+
+		// 提供方法，一键清空数据
+		// 页面使用selectComponent获取日历节点，然后调用该方法清空数据
+		clearSelectDate() {
+			// 清空三个月的数据
+			Object.keys(this.data.calendarInfo).forEach(item => {
+				this.data.calendarInfo[item].list.forEach((arr, len) => {
+					if (arr.color !== 'unSelect') {
+						arr.color = 'unSelect'
+						delete arr.rangTip
+					}
+				})
+			})
+			// 清空预设值
+			this.setData({
+				calendarInfo: this.data.calendarInfo,
+				selectDate: '',
+				selectDateMultiple: [],
+				selectDateRange: {
+					...this.properties.selectDateRange,
+					begin: '',
+					end: ''
+				}
+			})
 		},
 
 		// 手指滑动日历

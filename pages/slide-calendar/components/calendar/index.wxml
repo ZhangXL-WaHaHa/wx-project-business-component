@@ -32,13 +32,17 @@
 						<view class="calendar-data-text {{item.type === 'cur' ? 'calendar-data-cur-text' : ''}}">{{ item.value }}
 						</view>
 						<!--	不同类型的提示文案		-->
-						<view wx:if="{{item.tip.type === 'text'}}" class="calendar-data-text-tip line-1"
+						<view 
+							wx:if="{{item.tip.type === 'text'}}" class="calendar-data-text-tip line-1"
 							style="color: {{item.tip.color || '#999999'}}">{{item.tip.text}}</view>
-						<view wx:if="{{item.tip.type === 'tag'}}" class="calendar-data-tag-tip"
+						<view 
+							wx:if="{{item.tip.type === 'tag'}}" class="calendar-data-tag-tip"
 							style="background-color: {{item.tip.color || 'lightgreen'}};">{{item.tip.text}}</view>
 
 						<!-- 显示起始文案 -->
-						<view wx:if="{{item.rangTip && item.rangTip !== ''}}" class="calendar-data-rang-tip">{{item.rangTip}}</view>
+						<view 
+							wx:if="{{item.rangTip && item.rangTip !== ''}}" 
+							class="calendar-data-rang-tip {{item.rangTip === selectDateRange.beginText ? 'calendar-begin-rang-tip-radius' : 'calendar-end-rang-tip-radius'}}">{{item.rangTip}}</view>
 					</view>
 
 					<!-- 显示月份水印 -->
