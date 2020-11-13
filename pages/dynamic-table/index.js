@@ -10,7 +10,7 @@ Page({
 				name: '姓名',
 				prod: 'name',
 				type: 'text', //设置整列的类型，暂时支持普通文本显示&&输入框类型&&按钮类型&&可操作文本显示&&标签类型
-				fixed: 'left', //设置固定列，目前暂支持设置left或者right两种值，设置其他值按照没有设置方法处理
+				// fixed: 'left', //设置固定列，目前暂支持设置left或者right两种值，设置其他值按照没有设置方法处理
 				width: '150rpx', //宽度占比
 				inputType: 'text', //指定输入框的类型，仅显示类型为input类型时有效
 				textType: '',  //文本类型，暂支持Array(数组)&&String(字符串)， 默认字符串
@@ -34,10 +34,10 @@ Page({
 			{
 				name: '客户类型',
 				prod: 'type',
-				type: 'button',
+				type: 'tag',
 				width: '200rpx', //宽度占比
 				inputType: 'text', //指定输入框的类型，仅显示类型为input类型时有效
-				textType: ''
+				textType: 'Array'
 			}
 		],
 		

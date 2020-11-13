@@ -55,6 +55,8 @@ page {
 	background-color: white;
 	white-space: nowrap;
 	width: 100%;
+	position: relative;
+	z-index: 1;
 }
 .border-left-right {
 	border-top: solid 1px var(--theme-border-color);
@@ -67,17 +69,20 @@ page {
 	box-sizing: border-box;
 }
 .table-title-item {
-	display: inline-block;
 	position: relative;
 	font-size: 28rpx;
 	color: var(--theme-title-text-color);
+	padding: 10rpx 0;
 	
-	height: var(--theme-title-item-height);
-	text-align: center;
-	line-height: var(--theme-title-item-height);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	/* height: var(--theme-title-item-height); */
+	/* line-height: var(--theme-title-item-height); */
 
 	border-bottom: solid 1px var(--theme-border-color);
-	white-space: normal;
 }
 /* 左边监听 */
 .monitorLeftLine {
@@ -104,9 +109,8 @@ page {
 	height: var(--theme-title-item-height);
 	text-align: center;
 	line-height: var(--theme-title-item-height);
-	
-
 	border-top: solid 1px var(--theme-border-color);
+	background-color: white;
 }
 .table-title-fixed-right-item {
 	position: relative;
@@ -120,6 +124,7 @@ page {
 	line-height: var(--theme-title-item-height);
 
 	border-top: solid 1px var(--theme-border-color);
+	background-color: white;
 }
 /* 非固定数据 */
 .table-title-unFixed-item {
@@ -143,21 +148,24 @@ page {
 	box-shadow: -5px 0 5px -5px rgba(0,0,0,.12);
 }
 /* 固定不动显示部分 */
+/* 暂时不设置层级 */
 .fixed-left-part {
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 9;
-	background-color: white;
+	background-color: red;
 	padding: 0;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .fixed-right-part {
 	position: absolute;
 	top: 0;
 	right: 0;
-	z-index: 9;
-	background-color: white;
+	background-color: red;
 	padding: 0;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 /* 标签类型 */
@@ -168,6 +176,8 @@ page {
 	background-color: var(--theme-text-tag-background);
 	color: var(--theme-text-tag-color);
 	margin-right: 10rpx;
+	white-space: nowrap;
+	margin-top: 10rpx;
 }
 /* 输入框类型 */
 .input {

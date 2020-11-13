@@ -179,6 +179,7 @@ Component({
 		// 渲染完毕，设置监听器，解决多次监听滚动到最左或者最右事件
 		this.createIntersectionObserver().relativeToViewport().observe('.monitorLeftLine', res => {
 			if (res.intersectionRatio > 0) {
+				// console.log('滚动到左边')
 				this.data.listenScroll = false
 				// 设置显示
 				this.setData({
@@ -189,6 +190,7 @@ Component({
 		})
 		this.createIntersectionObserver().relativeToViewport().observe('.monitorRightLine', res => {
 			if (res.intersectionRatio > 0) {
+				// console.log('滚动到右边')
 				this.data.listenScroll = false
 				this.setData({
 					showLeftShadow: false,
@@ -206,6 +208,7 @@ Component({
 		// 滚动到左边之后还会触发滚动事件，需要限制
 		titleScroll() {
 			if(!this.data.listenScroll) {
+				this.data.listenScroll = true
 				return ;
 			}
 			if (!this.data.showRightShadow || !this.data.showLeftShadow) {
