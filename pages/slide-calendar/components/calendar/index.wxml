@@ -9,9 +9,13 @@
 		<view wx:if="{{ showTitle }}" class="calendar-title">{{ title }}</view>
 		<!-- 副标题 -->
 		<view class="calnedar-subtitle-box">
-			<image src="/static/img/arrow-left.png" class="calendar-icon-next" bindtap="showLastMonth"></image>
+			<view class="calendar-icon-next calendar-icon" bindtap="showLastMonth">
+				<image src="/static/img/arrow-left.png" class="icon"></image>
+			</view>
 			<view class="calendar-subtitle">{{ subTitle.year + '年' + subTitle.month + '月' }}</view>
-			<image src="/static/img/arrow-right.png" class="calendar-icon-last" bindtap="showNextMonth"></image>
+			<view class="calendar-icon-last calendar-icon" bindtap="showNextMonth">
+				<image src="/static/img/arrow-right.png" class="icon"></image>
+			</view>
 		</view>
 		<!-- 一周 -->
 		<view class="calendar-week-box">

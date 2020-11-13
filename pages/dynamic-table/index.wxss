@@ -1,0 +1,6 @@
+/* pages/dynamic-table/index.wxss */
+.table {
+  width: 700rpx;
+  margin: 0 auto;
+  margin-top: 20rpx;
+}

@@ -36,18 +36,27 @@
   "compileType": "miniprogram",
   "libVersion": "2.12.1",
   "appid": "wxce34079f80b15a54",
-  "projectname": "%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6",
+  "projectname": "小程序业务组件",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
+    "plugin": {
       "list": []
     },
-    "conversation": {
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "动态表格",
+          "pathName": "pages/dynamic-table/index",
+          "scene": null
+        }
+      ]
     }
   }
 }

@@ -1,0 +1,176 @@
+<!--pages/dynamic-table/components/table/index.wxml-->
+<scroll-view 
+	scroll-y="{{tableHeight !== ''}}"
+	style="height: {{tableHeight}}"
+	refresher-enabled="{{showRefreshStatus}}"
+	class="container-scroll-box"
+	bindrefresherpulling="pulling"
+	bindrefresherrefresh="refresh"
+	bindrefresherrestore="store"
+	bindrefresherabort="abort"
+	bindscrolltolower="loadMoreData">
+	<!-- 固定标题栏 -->
+	<scroll-view 
+		scroll-x class="title-scroll-box {{border ? 'border-left-right' : 'border-top-bottom'}}"
+		bindscroll="titleScroll" enable-flex="true">
+		<!-- 标题部分 -->
+		<view class="sticky-title-part">
+			<view class="monitorLeftLine"></view>
+			<block wx:for="{{tableTitle}}" wx:key="prod">
+				<view 
+					class="table-title-item {{index !== tableTitle.length - 1 && border ? 'border-right' : ''}}" 
+					style="width: {{item.realWidth}}">{{item.name}}
+				</view>
+			</block>
+			<view class="monitorRightLine"></view>
+		</view>
+		<!-- 数据部分 -->
+		<view wx:for="{{tableList}}">
+			<block
+				wx:for="{{tableTitle}}" wx:for-item="arr" 
+				wx:for-index="temp" wx:key="prod">
+				<!-- 普通文字显示 -->
+				<view 
+					wx:if="{{arr.type === 'text'}}"
+					class="table-title-item {{temp !== tableTitle.length - 1 && border? 'border-right' : ''}}" 
+					style="width: {{arr.realWidth}}">
+					<block wx:if="{{arr.textType !== 'Array'}}">{{item[arr.prod]}}</block>
+					<block wx:else>
+						<text
+							wx:for="{{item[arr.prod]}}" wx:for-item="value" wx:for-index="key">value</text>
+					</block>
+				</view>
+				<!-- 标签显示 -->
+				<view
+					wx:if="{{arr.type === 'tag'}}"
+					class="table-title-item {{temp !== tableTitle.length - 1 && border? 'border-right' : ''}}"
+					style="width: {{arr.realWidth}}">
+					<block wx:if="{{arr.textType !== 'Array'}}"><text class="tag-text">{{item[arr.prod]}}</text></block>
+					<block wx:else>
+						<text 
+							wx:for="{{['儿童', '成人']}}" wx:for-item="text"
+							class="tag-text">{{text}}</text>
+					</block>
+				</view>
+				<!-- 输入框显示 -->
+				<view
+					wx:if="{{arr.type === 'input'}}"
+					class="table-title-item {{temp !== tableTitle.length - 1 && border? 'border-right' : ''}}"
+					style="width: {{arr.realWidth}}">
+					<input
+						class="input"
+						type="{{arr.inputType}}" 
+						data-index="{{index}}"
+						bindinput="input"
+						bindfocus="focus"
+						bindblur="blur"
+						bindconfirm="confirm"/>
+				</view>
+				<!-- 可操作普通文字显示 -->
+				<view
+					wx:if="{{arr.type === 'operationText'}}"
+					class="table-title-item {{temp !== tableTitle.length - 1 && border? 'border-right' : ''}}" 
+					style="width: {{arr.realWidth}}"
+					bindtap='tapOperationText' data-index="{{index}}">
+					<block wx:if="{{arr.textType !== 'Array'}}">
+						<text class="operation-text">{{item[arr.prod]}}</text>
+					</block>
+					<block wx:else>
+						<text 
+							wx:for="{{item[arr.prod]}}" wx:for-item="text" 
+							class="operation-text">{{text}}</text>
+					</block>
+				</view>
+				<!-- 可操作按钮显示 -->
+				<view
+					wx:if="{{arr.type === 'button'}}"
+					class="table-title-item {{temp !== tableTitle.length - 1 && border? 'border-right' : ''}}" 
+					style="width: {{arr.realWidth}}">
+					<block wx:if="{{arr.textType !== 'Array'}}">
+						<!-- <text class="operation-text">{{item[arr.prod]}}</text> -->
+						<button 
+							size="mini" class="btn" type="primary" hover-class="btn-hover-class"
+							bindtap="clickBtn" data-index="{{index}}" data-zIndex="{{0}}">{{item[arr.prod]}}</button>
+					</block>
+					<block wx:else>
+<!-- 						<text 
+							wx:for="{{item[arr.prod]}}" wx:for-item="text" 
+							class="operation-text">{{text}}</text> -->
+						<button 
+							wx:for="{{item[arr.prod]}}" wx:for-item="text"
+							wx:for-key="key" hover-class="btn-hover-class"
+							size="mini" class="btn" data-index="{{index}}"
+							data-zIndex="{{key}}">{{text}}</button>
+					</block>
+				</view>
+			</block>
+		</view>
+	</scroll-view>
+
+	<!-- 实现左固定列 -->
+	<view 
+		class="fixed-left-part {{showRightShadow ? 'border-right-shadow' : ''}}">
+		<!-- 标题部分 -->
+		<view>
+			<block
+				wx:for="{{tableTitle}}" wx:key="prod">
+				<!-- 固定在左侧 -->
+				<view 
+					wx:if="{{item.fixed === 'left'}}"
+					class="table-title-fixed-left-item {{border ? 'border-left' : ''}}" 
+					style="width: {{item.realWidth}}">{{item.name}}</view>
+				<view
+					wx:else
+					class="table-title-unFixed-item" 
+					style="width: {{item.realWidth}}">{{item.name}}</view>
+			</block>
+		</view>
+		<!-- 固定列部分实现自适应高度：重新渲染当前的数据部分，设置层级，固定列部分层级大于原有数据部分，非固定列层级小于原有数据部分 -->
+		<view wx:for="{{tableList}}">
+			<block 
+				wx:for="{{tableTitle}}" wx:for-item="arr" wx:for-index="temp"
+				wx:key="prod">
+				<view
+					wx:if="{{arr.fixed === 'left'}}"
+					class="table-title-fixed-left-item {{border ? 'border-left' : ''}}" 
+					style="width: {{arr.realWidth}}">{{item[arr.prod]}}</view>
+				<view
+					wx:else
+					class="table-title-unFixed-item {{border ? 'border-left' : ''}}" 
+					style="width: {{arr.realWidth}}">{{item[arr.prod]}}</view>
+			</block>
+		</view>
+	</view>
+	
+	<!-- 实现右固定列 -->
+	<view 
+		class="fixed-right-part {{showLeftShadow ? 'border-left-shadow' : ''}}">
+		<view>
+			<block
+				wx:for="{{tableTitle}}" wx:key="prod">
+				<view 
+					wx:if="{{arr.fixed === 'right'}}"
+					class="table-title-fixed-right-item {{border ? 'border-right' : ''}}" 
+					style="width: {{item.realWidth}}">{{item.name}}</view>
+				<view
+					wx:else
+					class="table-title-unFixed-item" 
+					style="width: {{item.realWidth}}">{{item.name}}</view>
+			</block>
+		</view>
+		<!-- 数据部分 -->
+		<view wx:for="{{tableList}}">
+			<block 
+				wx:for="{{tableTitle}}" wx:for-item="arr" wx:for-index="temp" wx:key="prod">
+				<view
+					wx:if="{{arr.fixed === 'right'}}"
+					class="table-title-fixed-right-item {{border ? 'border-right' : ''}}" 
+					style="width: {{arr.realWidth}}">{{item[arr.prod]}}</view>
+				<view
+					wx:else
+					class="table-title-unFixed-item" 
+					style="width: {{arr.realWidth}}">{{item[arr.prod]}}</view>
+			</block>
+		</view>
+	</view>
+</scroll-view>

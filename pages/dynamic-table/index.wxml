@@ -1,0 +1,17 @@
+<!--pages/dynamic-table/index.wxml-->
+<!-- 基础表格 -->
+<view class="table">
+  <table 
+	tableHead="{{tableHead}}"
+	bind:focus="focus"
+	bind:input="input"
+	bind:blur="blur"
+	bind:confirm="confirm"
+	bind:pulling="pulling"
+	bind:refresh='refresh'
+	bind:store="store"
+	bind:abort="abort"
+	bind:loadMore="loadMore"
+	bind:tapOperationText="tapOperationText"
+	bind:clickBtn="clickBtn"></table>
+</view>

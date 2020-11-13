@@ -55,6 +55,22 @@ page {
 	width: 30rpx;
 	height: 30rpx;
 }
+.icon {
+	width: 100%;
+	height: 100%;
+}
+/* 扩大点击区域 */
+.calendar-icon {
+	position: relative;
+}
+.calendar-icon::before {
+	content: "";
+	position: absolute;
+	top: -15px;
+	bottom: -15px;
+	left: -15px;
+	right: -15px;
+}
 
 .calendar-subtitle {
 	font-size: 28rpx;
