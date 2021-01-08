@@ -1,0 +1,3 @@
+<!--pages/download-file/index.wxml-->
+<!-- 下载并将文件保存到本地目录当中 -->
+<button bindtap="downloadFile">下载保存</button>

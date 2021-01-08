@@ -83,5 +83,12 @@ Page({
 		wx.navigateTo({
 			url: '../slide-calendar/index'
 		})
+	},
+
+	// 跳转到下载保存文件
+	handleDownLoadFile() {
+		wx.navigateTo({
+			url: '../download-file/index',
+		})
 	}
 })
