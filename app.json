@@ -5,7 +5,8 @@
     "pages/logs/logs",
     "pages/transparent-bar/index",
     "pages/slide-calendar/index",
-    "pages/download-file/index"
+    "pages/download-file/index",
+    "pages/navigate-ball/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

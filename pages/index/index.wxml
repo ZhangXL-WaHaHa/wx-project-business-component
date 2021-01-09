@@ -4,4 +4,5 @@
 	<button bindtap="handleTransparentBar" class="btn">透明渐变导航栏</button>
 	<button bindtap="handleSlideCalendar" class="btn">滑动日历</button>
 	<button bindtap="handleDownLoadFile" class="btn">下载保存</button>
+	<button bindtap="handleNavigateBall" class="btn">导航球</button>
 </view>

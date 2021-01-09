@@ -90,5 +90,12 @@ Page({
 		wx.navigateTo({
 			url: '../download-file/index',
 		})
+	},
+
+	// 处理导航球
+	handleNavigateBall() {
+		wx.navigateTo({
+			url: '../navigate-ball/index',
+		})
 	}
 })
