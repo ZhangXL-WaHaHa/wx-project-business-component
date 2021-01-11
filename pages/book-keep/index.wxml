@@ -1,0 +1,8 @@
+<!--pages/book-keep/index.wxml-->
+<view class="container">
+  <button >今日账单</button>
+  <button >修改本周账单</button>
+  <button >查看本周账单</button>
+  <button >修改价格类目</button>
+  <button bindtap="modifyUser">修改成员类目</button>
+</view>

@@ -1,0 +1,52 @@
+/* pages/book-keep/components/table/index.wxss */
+.options-name {
+	font-size: 26rpx;
+	color: #666666;
+	margin-top: 26rpx;
+}
+
+.client-container {
+	height: 80rpx;
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.client-id-card,
+.client-type,
+.client-phone,
+.client-name {
+	width: 200rpx;
+	line-height: 80rpx;
+	font-size: 32rpx;
+	color: #333333;
+
+	text-align: center;
+
+	/* 设置溢出显示省略号 */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+}
+
+.client-title {
+	background-color: #FCF8E2;
+	height: 80rpx;
+}
+
+.border-right {
+	border-right: solid 1px #EEEEEE;
+}
+.text-center-none {
+	text-align: left;
+	padding-left: 12rpx;
+}
+.bg-gray {
+	background-color: #F8F8F8;
+}
+.box-border {
+	border: solid 1px #EEEEEE;
+}

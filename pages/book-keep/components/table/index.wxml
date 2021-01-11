@@ -1,0 +1,26 @@
+<!--pages/book-keep/components/table/index.wxml-->
+<view>
+  <!-- 标题 -->
+  <view class="options-name box-border">
+    <!-- 标题 -->
+    <view wx:for="{{ head }}" class="client-container client-title">
+      <view class="client-name border-right text-center-none">{{item.name}}</view>
+    </view>
+    <!-- 信息 -->
+    <block wx:for="{{ list }}">
+      <!-- <view class="client-container {{index % 2 !== 0 ? 'bg-gray' : ''}}">
+        <view class="client-name border-right text-center-none">{{item.name}}</view>
+        <view class="client-phone border-right text-center-none">{{item.telnum}}</view>
+        <view class="client-id-card border-right text-center-none">
+          <view class="line-1">{{item.passportnum}}</view>
+        </view>
+        <view class="client-type text-center-none">{{item.visitor_type_name}}</view>
+      </view> -->
+      <block wx:for="{{ head }}" wx:for-item="array">
+        <view class="client-container {{index % 2 !== 0 ? 'bg-gray' : ''}}">
+          <view class="client-name text-center-none">{{item[array.prod]}}</view>
+        </view>
+    </block>
+    </block>
+  </view>
+</view>

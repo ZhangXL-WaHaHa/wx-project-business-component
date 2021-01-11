@@ -1,0 +1,4 @@
+<!--pages/book-keep/modify-user/index.wxml-->
+<view class="container">
+  <table list="{{user}}" head="{{ tableHead }}"></table>
+</view>
