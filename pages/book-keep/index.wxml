@@ -4,5 +4,11 @@
   <button >修改本周账单</button>
   <button >查看本周账单</button>
   <button >修改价格类目</button>
-  <button bindtap="modifyUser">修改成员类目</button>
+
+  <view class="flex-row mt-20 fz-30">
+    <input placeholder="输入成员名字(勿相同)" value="{{addMemberInfo}}" bindinput="inputMemberInfo"/>
+    <button 
+      size="mini" type="primary"
+      bindtap="addMember" class="fz-30">添加</button>
+  </view>
 </view>

@@ -1,5 +1,7 @@
 // pages/book-keep/index.js
 import data from "data.js"
+import event from "event.js"
+
 Page({
 
   /**
@@ -7,7 +9,7 @@ Page({
    */
   data: {
     memberList: [],  //参与记账单的信息
-
+    addMemberInfo: '',  //添加的成员信息
     day: '',  //当前是星期几
   },
 
@@ -21,8 +23,8 @@ Page({
     this.data.day = data.week[new Date().getDay()]
 
 
-
-    console.log('输出本周时间==>', this.data.day)
+    // 初始化数据
+    this.initData()
   },
 
   /**
@@ -74,6 +76,26 @@ Page({
 
   },
 
+  /* 初始化数据 */
+  initData() {
+    // 获取缓存中的用户信息
+    this.getStorageMember()
+  },
+
+  /* 获取缓存中的用户信息 */
+  getStorageMember() {
+    wx.getStorage({
+      key: 'order_user',
+      success: res => {
+        console.log('本地获取成功==>', res)
+        this.data.memberList = res.data
+      },
+      fail: error => {
+        this.data.memberList = data.memberInfo
+      }
+    })
+  },
+
   // 图片解析文字 https://cloud.tencent.com/document/product/866/33526
   selectImage() {
     wx.chooseImage({
@@ -103,10 +125,36 @@ Page({
     })
   },
 
-  // 点击修改成员类目
-  modifyUser() {
-    wx.navigateTo({
-      url: 'modify-user/index',
+  /* 输入成员名字 */
+  inputMemberInfo(e) {
+    // console.log('成员信息==>', e)
+    this.data.addMemberInfo = e.detail.value
+  },
+
+  // 点击添加成员
+  addMember() {
+    let add_flag = true
+    // 不能出现相同名字的成员
+    this.data.memberList.forEach(item => {
+      if(item.name === this.data.addMemberInfo) {
+        wx.showToast({
+          title: '已经有该名字成员',
+          icon: 'none'
+        })
+        add_flag = false
+      }
     })
+    if(add_flag) {
+      this.data.memberList.push({
+        name: this.data.addMemberInfo
+      })
+      event.setStorage(this.data.memberList, 'order_user').then(() => {
+        this.setData({
+          addMemberInfo: ''
+        })
+      }).catch(() => {
+
+      })
+    }
   }
 })
