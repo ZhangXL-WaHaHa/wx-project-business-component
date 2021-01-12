@@ -12,6 +12,11 @@ Page({
         name: '名字',
         prod: 'name',
         type: 'text'
+      },
+      {
+        name: '操作',
+        prod: 'operation',
+        type: 'button'
       }
     ],
   },
@@ -91,5 +96,10 @@ Page({
         })
       }
     })
+  },
+  
+  /* 添加成员 */
+  addUser() {
+    
   }
 })

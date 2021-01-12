@@ -9,6 +9,8 @@ Page({
     memberList: [],  //参与记账单的信息
 
     day: '',  //当前是星期几
+
+    member: [],  //成员信息
   },
 
   /**
@@ -23,6 +25,9 @@ Page({
 
 
     console.log('输出本周时间==>', this.data.day)
+
+    // 初始化数据
+    this.initData()
   },
 
   /**
@@ -74,6 +79,11 @@ Page({
 
   },
 
+  /* 初始化数据 */
+  initData() {
+
+  },
+
   // 图片解析文字 https://cloud.tencent.com/document/product/866/33526
   selectImage() {
     wx.chooseImage({
@@ -103,10 +113,8 @@ Page({
     })
   },
 
-  // 点击修改成员类目
-  modifyUser() {
-    wx.navigateTo({
-      url: 'modify-user/index',
-    })
+  // 点击添加成员
+  addUser() {
+
   }
 })

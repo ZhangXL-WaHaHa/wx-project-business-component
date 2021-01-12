@@ -1,4 +1,7 @@
 <!--pages/book-keep/modify-user/index.wxml-->
 <view class="container">
   <table list="{{user}}" head="{{ tableHead }}"></table>
+
+  <!-- 添加按钮 -->
+  <button bindtap="addUser">添加成员</button>
 </view>
