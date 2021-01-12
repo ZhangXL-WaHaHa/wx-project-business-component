@@ -24,11 +24,6 @@ Component({
     /* 操作框显示的按钮 */
     operationBtn: [
       {
-        name: '编辑',
-        type: 'primary',
-        event: 'modify'
-      },
-      {
         name: '删除',
         type: 'warn',
         event: 'delete'

@@ -126,7 +126,8 @@ Page({
       })
       event.setStorage(this.data.memberList, 'order_user').then(() => {
         this.setData({
-          addMemberInfo: ''
+          addMemberInfo: '',
+          memberList: this.data.memberList
         })
       }).catch(() => {
 
@@ -146,7 +147,7 @@ Page({
             memberList: this.data.memberList
           })
           // 更新
-          event.setStorage('order_user', this.data.memberList)
+          event.setStorage(this.data.memberList, 'order_user')
         }
       }
     })

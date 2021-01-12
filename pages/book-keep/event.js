@@ -14,6 +14,7 @@ module.exports = {
           resolve()
         },
         fail: error => {
+          console.log('信息保存失败==>', error)
           wx.showToast({
             title: '保存到本地失败',
             icon: 'none'

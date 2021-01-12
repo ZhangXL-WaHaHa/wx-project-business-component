@@ -10,17 +10,22 @@
   <!-- 信息 -->
   <block wx:for="{{ list }}">
     <view class="client-container {{index % 2 !== 0 ? 'bg-gray' : ''}}">
-      <block wx:for="{{ head }}" wx:for-item="array">
+      <block wx:for="{{ head }}" wx:for-item="array" wx:for-index="key">
         <view 
           class="client-name text-center-none border-right"
           wx:if="{{ array.type === 'text' }}">{{item[array.prod]}}</view>
-        <view wx:else class="flex-row">
-          <view wx:for="{{ operationBtn }}">
+        <view 
+          class="client-name text-center-none border-right"
+          wx:if="{{ array.type === 'input' }}">
+          <input placeholder="请输入成员名字" class="input"/>
+        </view>
+        <view wx:if="{{ array.type === 'button' }}" class="flex-row">
+          <view wx:for="{{ operationBtn }}" wx:for-index="temp">
             <button 
               type="{{ item.type }}" size="mini" 
               class="btn" bindtap="clickBtn" 
               data-event="{{ item.event }}"
-              data-index="{{index}}">{{ item.name }}</button>
+              data-index="{{ index }}">{{ item.name }}</button>
           </view>
         </view>
       </block>
