@@ -17,7 +17,7 @@
 .client-type,
 .client-phone,
 .client-name {
-	width: 200rpx;
+	width: 250rpx;
 	line-height: 80rpx;
 	font-size: 32rpx;
 	color: #333333;
@@ -49,4 +49,12 @@
 }
 .box-border {
 	border: solid 1px #EEEEEE;
+}
+
+.flex-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex: 1;
+	padding: 10rpx;
 }

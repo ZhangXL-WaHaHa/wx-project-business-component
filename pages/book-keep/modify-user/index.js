@@ -1,12 +1,15 @@
 // pages/book-keep/modify-user/index.js
 import data from "../data"
+import event from "../event"
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    user: [],
+    memberList: [],
+    addMemberInfo: '',  //添加的成员名字
     tableHead: [
       {
         name: '名字',
@@ -85,21 +88,74 @@ Page({
       success: res => {
         console.log('获取缓存中的用户数据成功==>', res)
         this.setData({
-          user: res.data
+          memberList: res.data
         })
-        
+
       },
       fail: error => {
         console.log('获取缓存中的数据失败==>', error)
         this.setData({
-          user: data.memberInfo
+          memberList: data.memberInfo
         })
       }
     })
   },
-  
-  /* 添加成员 */
-  addUser() {
-    
+
+  /* 输入成员名字 */
+  inputMemberInfo(e) {
+    // console.log('成员信息==>', e)
+    this.data.addMemberInfo = e.detail.value
+  },
+
+  // 点击添加成员
+  addMember() {
+    let add_flag = true
+    // 不能出现相同名字的成员
+    this.data.memberList.forEach(item => {
+      if (item.name === this.data.addMemberInfo) {
+        wx.showToast({
+          title: '已经有该名字成员',
+          icon: 'none'
+        })
+        add_flag = false
+      }
+    })
+    if (add_flag) {
+      this.data.memberList.push({
+        name: this.data.addMemberInfo
+      })
+      event.setStorage(this.data.memberList, 'order_user').then(() => {
+        this.setData({
+          addMemberInfo: ''
+        })
+      }).catch(() => {
+
+      })
+    }
+  },
+
+  /* 点击删除 */
+  delete(e) {
+    wx.showModal({
+      title: '操作提示',
+      content: '是否删除该成员',
+      success: res => {
+        if(res.confirm) {
+          this.data.memberList.splice(e.detail.index, 1)
+          this.setData({
+            memberList: this.data.memberList
+          })
+          // 更新
+          event.setStorage('order_user', this.data.memberList)
+        }
+      }
+    })
+  },
+
+  /* 点击修改 */
+  modify(e) {
+    this.setData({
+      ['tableHead[0].type']: 'input'
+    })
   }
 })

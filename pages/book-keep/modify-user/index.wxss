@@ -1,1 +1,11 @@
 /* pages/book-keep/modify-user/index.wxss */
+.flex-row {
+  display: flex;
+  align-items: center;
+}
+.mt-100 {
+  margin-top: 100rpx;
+}
+.fz-30 {
+  font-size: 30rpx;
+}

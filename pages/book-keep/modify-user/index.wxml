@@ -1,7 +1,10 @@
 <!--pages/book-keep/modify-user/index.wxml-->
 <view class="container">
-  <table list="{{user}}" head="{{ tableHead }}"></table>
+  <table list="{{memberList}}" head="{{ tableHead }}" bind:modify="modify" bind:delete="delete"></table>
 
   <!-- 添加按钮 -->
-  <button bindtap="addUser">添加成员</button>
+  <view class="flex-row mt-100 fz-30">
+    <input placeholder="输入成员名字(勿相同)" value="{{addMemberInfo}}" bindinput="inputMemberInfo" />
+    <button size="mini" type="primary" bindtap="addMember" class="fz-30">添加</button>
+  </view>
 </view>

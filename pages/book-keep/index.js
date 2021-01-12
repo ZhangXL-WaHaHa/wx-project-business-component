@@ -1,5 +1,7 @@
 // pages/book-keep/index.js
 import data from "data.js"
+import event from "event.js"
+
 Page({
 
   /**
@@ -7,7 +9,7 @@ Page({
    */
   data: {
     memberList: [],  //参与记账单的信息
-
+    addMemberInfo: '',  //添加的成员信息
     day: '',  //当前是星期几
 
     member: [],  //成员信息
@@ -21,9 +23,6 @@ Page({
 
     // 获取当前时间为本周的星期几
     this.data.day = data.week[new Date().getDay()]
-
-
-
     console.log('输出本周时间==>', this.data.day)
 
     // 初始化数据
@@ -81,7 +80,23 @@ Page({
 
   /* 初始化数据 */
   initData() {
+    // 获取缓存中的用户信息
+    // this.getStorageMember()
 
+  },
+
+  /* 获取缓存中的用户信息 */
+  getStorageMember() {
+    wx.getStorage({
+      key: 'order_user',
+      success: res => {
+        console.log('本地获取成功==>', res)
+        this.data.memberList = res.data
+      },
+      fail: error => {
+        this.data.memberList = data.memberInfo
+      }
+    })
   },
 
   // 图片解析文字 https://cloud.tencent.com/document/product/866/33526
@@ -113,8 +128,10 @@ Page({
     })
   },
 
-  // 点击添加成员
-  addUser() {
-
+  /* 操作成员信息 */
+  showMemberInfo() {
+    wx.navigateTo({
+      url: 'modify-user/index',
+    })
   }
 })

@@ -4,17 +4,5 @@
   <button >修改本周账单</button>
   <button >查看本周账单</button>
   <button >修改价格类目</button>
-
-  <!-- 客户列表 -->
-	<view
-		class="order-info-box mb-10 mt-16"
-		wx:if="{{orderInfo}}">
-		<view class="flex-row">
-			<view class="title">添加成员</view>
-    </view>
-    <view>
-      <input placeholder="输入成员名字"/>
-      <button size="small" type="primary" bindtap="">添加</button>
-    </view>
-	</view>
+  <button bindtap="showMemberInfo">操作成员信息</button>
 </view>
