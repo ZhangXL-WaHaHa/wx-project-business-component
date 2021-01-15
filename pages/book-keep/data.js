@@ -19,12 +19,16 @@ export default {
   priceInfo: [
     {
       price: 13,
+	  
+	  name: 13,  //用在弹出框显示
     },
     {
-      price: 12
+      price: 12,
+	  name: 12
     },
     {
-      price: 15
+      price: 15,
+	  name: 15
     }
   ],
 
@@ -34,11 +38,15 @@ export default {
     night: ''
   },
 
-  /* 价格类型 */
-  price: [12, 13, 15],
-
-  /* 点单的详情 */
-  orderList: [],
+  /* 一周的点单的详情 */
+  weekOrderList: [],
+  
+  /**
+   * 一天的订单详情
+   */
+  dayOrderList: {
+	  
+  },
 
   /* 星期对应关系 */
   week: {

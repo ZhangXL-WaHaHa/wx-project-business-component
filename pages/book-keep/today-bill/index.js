@@ -9,18 +9,35 @@ Page({
    */
   data: {
     day: '', //周几
+	showPrice: false,  //是否显示价格弹出框
+	
     priceList: [], //价格数据
     memberList: [], //成员数据
+	dayList: [
+		{
+			name: '中午',
+			prod: 'noon'
+		},
+		{
+			name: '晚上',
+			prod: 'night'
+		}
+	],  //一天的字段
     tableHead: [{
         name: '名字',
         prod: 'name',
         type: 'text'
       },
       {
-        name: '价格',
-        prod: 'price',
+        name: '价格(中午)',
+        prod: 'noon_price',
         type: 'select'
-      }
+      },
+	  {
+	    name: '价格(晚上)',
+	    prod: 'night_price',
+	    type: 'select'
+	  }
     ],
   },
 
@@ -120,6 +137,29 @@ Page({
         priceList: data.priceInfo
       })
     })
-
   },
+  
+  /**
+   * 点击保存(暂时将订单保存起来)
+   */
+  savBill() {
+	  
+	  
+  },
+  
+  /**
+   * 关闭弹框
+   */
+  onClose() {
+	  this.setData({
+		  showPrice: false
+	  })
+  },
+  
+  /**
+   * 选择了价格
+   */
+  selectPrice(e) {
+	  console.log('选择了价格==>', e)
+  }
 })

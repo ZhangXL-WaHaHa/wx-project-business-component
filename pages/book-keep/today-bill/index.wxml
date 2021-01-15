@@ -2,11 +2,15 @@
 <view class="container">
   <!-- 显示时间 -->
   <view>今天是：星期{{ day }}</view>
+  
+  <!-- 使用表格 -->
   <table list="{{ priceList }}" head="{{ tableHead }}" bind:modify="modify" bind:delete="delete"></table>
-
-  <!-- 添加按钮 -->
-  <view class="flex-row mt-100 fz-30">
-    <input placeholder="输出价格(勿相同)" value="{{addPrice}}" bindinput="inputMemberInfo" />
-    <button size="mini" type="primary" bindtap="addMember" class="fz-30">添加</button>
-  </view>
+  
+  <!-- 选择价格弹出框 -->
+  <van-action-sheet
+    show="{{ showPrice }}"
+    actions="{{ priceList }}"
+    bind:close="onClose"
+    bind:select="selectPrice"
+  />
 </view>
