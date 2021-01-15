@@ -1,0 +1,10 @@
+<!--pages/book-keep/modify-user/index.wxml-->
+<view class="container">
+  <table list="{{ priceList }}" head="{{ tableHead }}" bind:modify="modify" bind:delete="delete"></table>
+
+  <!-- 添加按钮 -->
+  <view class="flex-row mt-100 fz-30">
+    <input placeholder="输出价格(勿相同)" value="{{addPrice}}" bindinput="inputMemberInfo" />
+    <button size="mini" type="primary" bindtap="addMember" class="fz-30">添加</button>
+  </view>
+</view>

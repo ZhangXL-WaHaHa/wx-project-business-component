@@ -3,6 +3,6 @@
   <button >今日账单</button>
   <button >修改本周账单</button>
   <button >查看本周账单</button>
-  <button >修改价格类目</button>
+  <button bindtap="showPriceInfo">操作价格信息</button>
   <button bindtap="showMemberInfo">操作成员信息</button>
 </view>

@@ -2,7 +2,7 @@
  * 这是完成记账的基本信息字段
  *  */
 export default {
-  /* 基本信息 */
+  /* 成员基本信息 */
   memberInfo: [
     {
       name: '张晓立',
@@ -12,6 +12,19 @@ export default {
     },
     {
       name: '测试2号'
+    }
+  ],
+
+  /* 价格基本信息 */
+  priceInfo: [
+    {
+      price: 13,
+    },
+    {
+      price: 12
+    },
+    {
+      price: 15
     }
   ],
 

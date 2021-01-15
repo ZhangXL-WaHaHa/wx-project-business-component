@@ -7,7 +7,8 @@
     "pages/slide-calendar/index",
     "pages/download-file/index",
     "pages/book-keep/index",
-    "pages/book-keep/modify-user/index"
+    "pages/book-keep/modify-user/index",
+    "pages/book-keep/modify-price/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
