@@ -23,5 +23,25 @@ module.exports = {
         }
       })
     })
+  },
+  
+  /**
+	 * 从缓存中获取数据
+	 * @param {String} key 
+	 */
+	getStorage(key) {
+    return new Promise((resolve, reject) => {
+      wx.getStorage({
+        key: key,
+        success: res => {
+          console.log('获取缓存中的数据成功==>', res)
+          resolve(res.data)
+        },
+        fail: error => {
+          console.log('获取缓存数据失败==>', error)
+          reject(error)
+        }
+      })
+    })
 	}
 };

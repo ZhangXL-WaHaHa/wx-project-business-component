@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-panel": "@vant/weapp/panel/index",
+	"van-action-sheet": "@vant/weapp/action-sheet/index",
+    
+    "table": "../components/table/index"
+  }
+}

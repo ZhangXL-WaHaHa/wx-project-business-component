@@ -2,7 +2,7 @@
  * 这是完成记账的基本信息字段
  *  */
 export default {
-  /* 基本信息 */
+  /* 成员基本信息 */
   memberInfo: [
     {
       name: '张晓立',
@@ -15,17 +15,38 @@ export default {
     }
   ],
 
+  /* 价格基本信息 */
+  priceInfo: [
+    {
+      price: 13,
+	  
+	  name: 13,  //用在弹出框显示
+    },
+    {
+      price: 12,
+	  name: 12
+    },
+    {
+      price: 15,
+	  name: 15
+    }
+  ],
+
   /* 一天的价格字段 */
   day: {
     noon: '',
     night: ''
   },
 
-  /* 价格类型 */
-  price: [12, 13, 15],
-
-  /* 点单的详情 */
-  orderList: [],
+  /* 一周的点单的详情 */
+  weekOrderList: [],
+  
+  /**
+   * 一天的订单详情
+   */
+  dayOrderList: {
+	  
+  },
 
   /* 星期对应关系 */
   week: {

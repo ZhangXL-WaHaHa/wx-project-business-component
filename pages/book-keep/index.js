@@ -8,11 +8,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    memberList: [],  //参与记账单的信息
-    addMemberInfo: '',  //添加的成员信息
-    day: '',  //当前是星期几
+    memberList: [], //参与记账单的信息
+    addMemberInfo: '', //添加的成员信息
+    day: '', //当前是星期几
 
-    member: [],  //成员信息
+    member: [], //成员信息
   },
 
   /**
@@ -20,10 +20,6 @@ Page({
    */
   onLoad: function (options) {
     this.data.memberList = data.memberInfo
-
-    // 获取当前时间为本周的星期几
-    this.data.day = data.week[new Date().getDay()]
-    console.log('输出本周时间==>', this.data.day)
 
     // 初始化数据
     this.initData()
@@ -103,9 +99,9 @@ Page({
   selectImage() {
     wx.chooseImage({
       count: 1,
-			sizeType: ["compressed"],
-			sourceType: ["album"],
-			success: temp => {
+      sizeType: ["compressed"],
+      sourceType: ["album"],
+      success: temp => {
         // console.log('回调的temp==>', temp)
         wx.request({
           url: `https://ocr.tencentcloudapi.com/`,
@@ -132,6 +128,13 @@ Page({
   showMemberInfo() {
     wx.navigateTo({
       url: 'modify-user/index',
+    })
+  },
+
+  /* 操作价格信息 */
+  showPriceInfo() {
+    wx.navigateTo({
+      url: 'modify-price/index',
     })
   }
 })
