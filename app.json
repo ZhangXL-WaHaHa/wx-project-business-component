@@ -8,7 +8,8 @@
     "pages/download-file/index",
     "pages/book-keep/index",
     "pages/book-keep/modify-user/index",
-    "pages/book-keep/modify-price/index"
+    "pages/book-keep/modify-price/index",
+    "pages/book-keep/today-bill/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

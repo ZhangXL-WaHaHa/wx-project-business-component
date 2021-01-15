@@ -21,10 +21,6 @@ Page({
   onLoad: function (options) {
     this.data.memberList = data.memberInfo
 
-    // 获取当前时间为本周的星期几
-    this.data.day = data.week[new Date().getDay()]
-    console.log('输出本周时间==>', this.data.day)
-
     // 初始化数据
     this.initData()
   },
