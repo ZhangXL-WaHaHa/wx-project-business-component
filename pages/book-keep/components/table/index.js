@@ -40,6 +40,16 @@ Component({
       this.triggerEvent(e.currentTarget.dataset.event, {
         index: e.currentTarget.dataset.index
       })
+    },
+
+    /**
+     * 点击选择价格
+     */
+    selectPrice(e) {
+      this.triggerEvent("selectPrice", {
+        index: e.currentTarget.dataset.index,
+        key: e.currentTarget.dataset.type,
+      })
     }
   }
 })

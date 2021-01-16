@@ -76,23 +76,52 @@ Page({
 
   /* 初始化数据 */
   initData() {
-    // 获取缓存中的用户信息
-    // this.getStorageMember()
-
+    // 获取缓存中的本周订单信息，设置判断订单是否过期
+    this.getStorageOrderList()
   },
 
-  /* 获取缓存中的用户信息 */
-  getStorageMember() {
-    wx.getStorage({
-      key: 'order_user',
-      success: res => {
-        console.log('本地获取成功==>', res)
-        this.data.memberList = res.data
-      },
-      fail: error => {
-        this.data.memberList = data.memberInfo
+  /**
+   * 判断缓存中的订单信息是否已经过期
+   */
+  getStorageOrderList() {
+    // 获取本周订单过期时间
+    const endTimeStamp = this.getExpireTime()
+    event.getStorage('order_week').then(res => {
+      // 获取当前的时间戳
+      const nowTimeStamp = new Date().getTime()
+      if (res.exprie_at < nowTimeStamp) {
+        // 账单已经过期，清空当前缓存中的账单
+        event.setStorage({
+          exprie_at: endTimeStamp
+        }, 'order_week')
       }
+    }).catch(error => {
+      // 没有缓存，设置当前缓存订单中的过期时间
+      const week_bill = {
+        exprie_at: endTimeStamp
+      }
+      event.setStorage(week_bill, 'order_week')
     })
+  },
+
+  /**
+   * 获取本周账单的过期时间
+   * @returns(Number) 过期时间戳
+   */
+  getExpireTime() {
+    const now_date = new Date()
+    // 获取今天是周几
+    const day = now_date.getDay()
+    // 获取今天的时间戳
+    const year = now_date.getFullYear()
+    const month = now_date.getMonth() + 1
+    const date = now_date.getDate()
+    const nowTimeStamp = new Date(`${year}/${month}/${date} 23:59:59`).getTime()
+    // 获取今天距离周日的时间戳
+    const timeStamp = day === 0 ? 0 : (7 - day) * 24 * 60 * 60 * 1000
+
+    console.log('输出当前的时间==>', day, year, month, date, `${year}/${month}/${date}`, nowTimeStamp)
+    return nowTimeStamp + timeStamp
   },
 
   // 图片解析文字 https://cloud.tencent.com/document/product/866/33526
@@ -135,6 +164,15 @@ Page({
   showPriceInfo() {
     wx.navigateTo({
       url: 'modify-price/index',
+    })
+  },
+
+  /**
+   * 设置今日账单
+   */
+  settingTodayBill() {
+    wx.navigateTo({
+      url: 'today-bill/index'
     })
   }
 })

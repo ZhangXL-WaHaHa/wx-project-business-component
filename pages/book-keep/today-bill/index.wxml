@@ -4,7 +4,13 @@
   <view>今天是：星期{{ day }}</view>
   
   <!-- 使用表格 -->
-  <table list="{{ priceList }}" head="{{ tableHead }}" bind:modify="modify" bind:delete="delete"></table>
+  <table 
+    list="{{ member_price_list }}" 
+    head="{{ tableHead }}" bind:modify="modify" 
+    bind:selectPrice="showPrice"></table>
+
+  <!-- 保存按钮 -->
+  <button bindtap="saveBill" style="margin-top: 40rpx" type="primary">保存</button>
   
   <!-- 选择价格弹出框 -->
   <van-action-sheet

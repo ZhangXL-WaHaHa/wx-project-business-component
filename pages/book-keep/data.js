@@ -39,7 +39,7 @@ export default {
   },
 
   /* 一周的点单的详情 */
-  weekOrderList: [],
+  weekOrderList: null,
   
   /**
    * 一天的订单详情

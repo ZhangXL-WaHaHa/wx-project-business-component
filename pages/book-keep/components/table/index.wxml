@@ -4,7 +4,7 @@
   <!-- 标题 -->
   <view class="client-container client-title">
     <block wx:for="{{ head }}">
-      <view class="client-name border-right text-center-none">{{item.name}}</view>
+      <view class="client-name border-right text-center-none" style="width: {{item.width || ''}}">{{item.name}}</view>
     </block>
   </view>
   <!-- 信息 -->
@@ -13,21 +13,27 @@
       <block wx:for="{{ head }}" wx:for-item="array" wx:for-index="key">
         <view 
           class="client-name text-center-none border-right"
+          style="width: {{array.width || ''}}"
           wx:if="{{ array.type === 'text' }}">{{item[array.prod]}}</view>
         <view 
           class="client-name text-center-none border-right"
+          style="width: {{array.width || ''}}"
           wx:if="{{ array.type === 'input' }}">
           <input placeholder="请输入成员名字" class="input"/>
         </view>
         <view wx:if="{{ array.type === 'button' }}" class="flex-row">
           <view wx:for="{{ operationBtn }}" wx:for-index="temp">
             <button 
-              type="{{ item.type }}" size="mini" 
+              type="{{ item.type }}" size="mini"
               class="btn" bindtap="clickBtn" 
               data-event="{{ item.event }}"
               data-index="{{ index }}">{{ item.name }}</button>
           </view>
         </view>
+        <view class="client-name text-center-none border-right"
+              style="width: {{array.width || ''}}"
+              wx:if="{{ array.type === 'select' }}"
+              bindtap="selectPrice" data-index="{{index}}" data-type="{{array.prod}}">{{item[array.prod]}}</view>
       </block>
     </view>
   </block>
