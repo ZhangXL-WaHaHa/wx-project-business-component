@@ -109,6 +109,14 @@ Page({
 
   // 点击添加成员
   addMember() {
+    if(this.data.addMemberInfo === '') {
+      wx.showToast({
+        title: '请输入成员名字',
+        icon: 'none'
+      })
+      return
+    }
+
     let add_flag = true
     // 不能出现相同名字的成员
     this.data.memberList.forEach(item => {

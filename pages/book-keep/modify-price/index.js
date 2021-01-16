@@ -102,6 +102,13 @@ Page({
 
   // 点击添加价格
   addMember() {
+    if(this.data.addPrice === '') {
+      wx.showToast({
+        title: '请输入价格',
+        icon: 'none'
+      })
+      return
+    }
     let add_flag = true
     // 不能出现相同名字的成员
     this.data.priceList.forEach(item => {
@@ -115,11 +122,13 @@ Page({
     })
     if (add_flag) {
       this.data.priceList.push({
+        price: this.data.addPrice,
         name: this.data.addPrice
       })
       event.setStorage(this.data.priceList, 'order_price').then(() => {
         this.setData({
-          addPrice: ''
+          addPrice: '',
+          priceList: this.data.priceList
         })
       }).catch(() => {})
     }
@@ -137,7 +146,7 @@ Page({
             priceList: this.data.priceList
           })
           // 更新
-          event.setStorage('order_price', this.data.priceList)
+          event.setStorage(this.data.priceList, 'order_price')
         }
       }
     })
