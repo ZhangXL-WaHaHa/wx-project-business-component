@@ -174,5 +174,14 @@ Page({
     wx.navigateTo({
       url: 'today-bill/index'
     })
+  },
+
+  /**
+   * 操作本周订单信息
+   */
+  showWeekBill() {
+    wx.navigateTo({
+      url: 'week-bill/index',
+    })
   }
 })

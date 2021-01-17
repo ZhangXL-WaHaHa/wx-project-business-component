@@ -4,7 +4,7 @@
 
   <!-- 添加按钮 -->
   <view class="flex-row mt-100 fz-30">
-    <input placeholder="输出价格(勿相同)" value="{{addPrice}}" bindinput="inputMemberInfo" />
+    <input placeholder="输出价格(勿相同)" value="{{addPrice}}" bindinput="inputMemberInfo" type="number"/>
     <button size="mini" type="primary" bindtap="addMember" class="fz-30">添加</button>
   </view>
 </view>

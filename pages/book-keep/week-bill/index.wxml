@@ -1,0 +1,28 @@
+<!--pages/book-keep/week-bill/index.wxml-->
+<!-- 订单合计部分 -->
+<view class="pb-40">
+	<view class="container">
+		<view>本周订单信息：</view>
+		<table head="{{ week_order_detail_head }}" list="{{ week_order_detail }}"></table>
+	</view>
+	<view class="container mt-40">
+		<view>成员订单信息：</view>
+		<table list="{{ day_number_order_list }}" head="{{ day_number_order_head }}"></table>
+	</view>
+	<!-- 本周订单详情 -->
+	<view class="container mt-40">
+    <view class="flex-row">
+		  <view>本周订单明细：</view>
+      <button bindtap="showMask" type="primary" size="small" class="btn">修改</button>
+    </view>
+		<block wx:for="{{weekOrderList}}">
+			<view class="fz-20">星期{{item.day}}</view>
+			<table list="{{ item.member_price_list }}" head="{{ tableHead }}" bind:modify="modify" bind:selectPrice="showPrice"></table>
+		</block>
+	</view>
+</view>
+<!-- 修改本周订单操作 -->
+<van-action-sheet 
+  show="{{ showModifMask }}" 
+  actions="{{ dayList }}" cancel
+  bind:close="onClose" bind:select="selectDay" />

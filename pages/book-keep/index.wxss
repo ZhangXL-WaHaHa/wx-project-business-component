@@ -1,1 +1,4 @@
 /* pages/book-keep/index.wxss */
+.mt-20 {
+  margin-top: 20rpx;
+}

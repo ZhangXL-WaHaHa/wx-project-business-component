@@ -1,0 +1,22 @@
+/* pages/book-keep/week-bill/index.wxss */
+.mt-40 {
+  margin-top: 40rpx;
+}
+.pb-40 {
+  padding-bottom: 40rpx;
+}
+.fz-20 {
+  font-size: 32rpx;
+  padding-top: 20rpx;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+}
+.btn {
+  font-size: 36rpx !important;
+  line-height: 60rpx !important;
+  height: 60rpx !important;
+  margin-bottom: 0 !important;
+}

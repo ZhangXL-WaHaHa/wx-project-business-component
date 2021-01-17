@@ -48,12 +48,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.day) {
+      this.setData({
+        day: options.day
+      })
+    } else {
+      // 获取今天是周几
+      this.formatWeekToday()
+    }
     // 获取缓存中的数据
     this.getStoragePrice()
     this.getStorageUser()
 
-    // 获取今天是周几
-    this.formatWeekToday()
+
 
     // 获取今天的账单缓存(从一周的缓存中获取)
     this.getStorageWeekBill()
@@ -147,8 +154,8 @@ Page({
   getStorageWeekBill() {
     event.getStorage('order_week').then(res => {
       // 遍历本周账单信息，找到对应的今日账单
-      for(let i in res) {
-        if(i === this.data.day) {
+      for (let i in res) {
+        if (i === this.data.day) {
           // this.setData({
           //   member_price_list: res[i]
           // })
@@ -165,7 +172,7 @@ Page({
    */
   formatOrderBill() {
     // 今日账单为空
-    if(this.data.member_price_list.length === 0) {
+    if (this.data.member_price_list.length === 0) {
       // 格式化成员数据，添加
       this.data.memberList.forEach(item => {
         this.data.member_price_list.push({
@@ -184,12 +191,12 @@ Page({
     this.data.memberList.forEach(item => {
       let add_flag = false
       this.data.member_price_list.forEach(array => {
-        if(item.name === array.name) {
+        if (item.name === array.name) {
           add_flag = true
         }
       })
 
-      if(!add_flag) {
+      if (!add_flag) {
         this.data.member_price_list.push({
           name: item.name,
           noon_price: '-',

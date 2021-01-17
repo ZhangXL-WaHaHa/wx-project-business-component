@@ -97,7 +97,7 @@ Page({
 
   /* 输入价格 */
   inputMemberInfo(e) {
-    this.data.addPrice = e.detail.value
+    this.data.addPrice = parseFloat(e.detail.value)
   },
 
   // 点击添加价格

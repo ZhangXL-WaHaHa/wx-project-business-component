@@ -1,8 +1,7 @@
 <!--pages/book-keep/index.wxml-->
 <view class="container">
   <button bindtap="settingTodayBill">今日账单</button>
-  <button >修改本周账单</button>
-  <button >查看本周账单</button>
-  <button bindtap="showPriceInfo">操作价格信息</button>
-  <button bindtap="showMemberInfo">操作成员信息</button>
+  <button bindtap="showWeekBill" class="mt-20">操作本周订单信息</button>
+  <button bindtap="showPriceInfo" class="mt-20">操作价格信息</button>
+  <button bindtap="showMemberInfo" class="mt-20">操作成员信息</button>
 </view>
