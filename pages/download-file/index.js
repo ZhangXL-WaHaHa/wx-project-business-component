@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    file: 'https://yg-dev-common.oss-cn-hangzhou.aliyuncs.com/media/api-travel/local/20210105/aa880655000886d62cf424424db25229.pdf',  //文件链接
+    file: '',  //文件的链接
   },
 
   /**

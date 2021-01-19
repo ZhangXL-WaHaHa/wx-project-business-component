@@ -33,7 +33,8 @@ module.exports = {
       url: file,
       success(res) {
         // 获取所下载的文件类型
-        let file_type = res.header['Content-Type'].split('/')[1]
+        const file_type_list = res.tempFilePath.split('.')
+        const file_type = file_type_list[file_type_list.length - 1]
 
         // ios和安卓系统保存和打开文档有不同，根据不同系统做不同处理
         if (wx.getSystemInfoSync().platform === 'ios') {
