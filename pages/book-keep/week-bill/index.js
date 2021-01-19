@@ -8,39 +8,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-    weekOrderList: [],  //本周账单
+    weekOrderList: [], //本周账单
     /* 本周订单明细头部 */
     tableHead: [{
-      name: '名字',
-      prod: 'name',
-      type: 'text',
-      width: '150rpx'
-    },
-    {
-      name: '价格(中午)',
-      prod: 'noon_price',
-      type: 'select',
-      width: '150rpx'
-    },
-    {
-      name: '价格(晚上)',
-      prod: 'night_price',
-      type: 'select',
-      width: '150rpx'
-    }
+        name: '名字',
+        prod: 'name',
+        type: 'text',
+        width: '150rpx'
+      },
+      {
+        name: '价格(中午)',
+        prod: 'noon_price',
+        type: 'select',
+        width: '150rpx'
+      },
+      {
+        name: '价格(晚上)',
+        prod: 'night_price',
+        type: 'select',
+        width: '150rpx'
+      }
     ],
 
     /* 本周订单明细 */
-    week_order_detail: [
-      {
-        partake_number: '-',  //参与人数
-        total_order_number: '-',  //订单总数
-        total_order_price: '-',  //订单总金额
-      }
-    ],
+    week_order_detail: [{
+      partake_number: '-', //参与人数
+      total_order_number: '-', //订单总数
+      total_order_price: '-', //订单总金额
+    }],
     /* 本周订单明细头部 */
-    week_order_detail_head: [
-      {
+    week_order_detail_head: [{
         name: '本周参与人数',
         prod: 'partake_number',
         type: 'text',
@@ -63,8 +60,7 @@ Page({
     /* 本周订单总数量明细 */
     day_number_order_list: [],
     /* 本周订单总数量头部 */
-    day_number_order_head: [
-      {
+    day_number_order_head: [{
         name: '姓名',
         prod: 'name',
         type: 'text',
@@ -85,14 +81,41 @@ Page({
     ],
 
     showModifMask: false, //是否显示修改信息框
-    dayList: [],  //可修改的时间
+    dayList: [{
+        value: '一',
+        name: '星期一'
+      },
+      {
+        value: '二',
+        name: '星期二'
+      },
+      {
+        value: '三',
+        name: '星期三'
+      },
+      {
+        value: '四',
+        name: '星期四'
+      },
+      {
+        value: '五',
+        name: '星期五'
+      },
+      {
+        value: '六',
+        name: '星期六'
+      },
+      {
+        value: '日',
+        name: '星期日'
+      }
+    ], //可修改的时间
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  },
+  onLoad: function (options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -151,15 +174,13 @@ Page({
    */
   emptyData() {
     this.data.weekOrderList = [],
-    this.data.week_order_detail = [
-      {
-        partake_number: '-',  //参与人数
-        total_order_number: '-',  //订单总数
-        total_order_price: '-',  //订单总金额
-      }
-    ],
-    this.data.day_number_order_list = [],
-    this.data.dayList = []
+      this.data.week_order_detail = [{
+        partake_number: '-', //参与人数
+        total_order_number: '-', //订单总数
+        total_order_price: '-', //订单总金额
+      }],
+      this.data.day_number_order_list = [],
+      this.data.dayList = []
   },
 
   /**
@@ -180,10 +201,10 @@ Page({
             day: i,
             member_price_list: res[i]
           })
-          this.data.dayList.push({
-            value: i,
-            name: '星期' + i
-          })
+          // this.data.dayList.push({
+          //   value: i,
+          //   name: '星期' + i
+          // })
           res[i].forEach(item => {
             let find_flag = false
             this.data.day_number_order_list.forEach(array => {
@@ -191,13 +212,13 @@ Page({
                 // 添加数量
                 if (item.noon_price !== '-') {
                   ++array.all_order_num
-                  ++all_order_num
+                    ++all_order_num
                   array.all_order_price += item.noon_price
                   all_order_price += item.noon_price
                 }
                 if (item.night_price !== '-') {
                   ++array.all_order_num
-                  ++all_order_num
+                    ++all_order_num
                   array.all_order_price += item.night_price
                   all_order_price += item.night_price
                 }
@@ -211,13 +232,13 @@ Page({
               item.all_order_price = 0
               if (item.noon_price !== '-') {
                 ++item.all_order_num
-                ++all_order_num
+                  ++all_order_num
                 item.all_order_price += item.noon_price
                 all_order_price += item.noon_price
               }
               if (item.night_price !== '-') {
                 ++item.all_order_num
-                ++all_order_num
+                  ++all_order_num
                 item.all_order_price += item.night_price
                 all_order_price += item.night_price
               }
@@ -231,15 +252,13 @@ Page({
 
       this.setData({
         weekOrderList: this.data.weekOrderList,
-        week_order_detail: [
-          {
-            partake_number: all_order_people + '人',  //参与人数
-            total_order_number: all_order_num,  //订单总数
-            total_order_price: '￥' + all_order_price,  //订单总金额
-          }
-        ],
+        week_order_detail: [{
+          partake_number: all_order_people + '人', //参与人数
+          total_order_number: all_order_num, //订单总数
+          total_order_price: '￥' + all_order_price, //订单总金额
+        }],
         day_number_order_list: this.data.day_number_order_list,
-        dayList: this.data.dayList
+        // dayList: this.data.dayList
       })
     })
   },
@@ -266,7 +285,7 @@ Page({
    * 选择了某天
    */
   selectDay(e) {
-    console.log('输出选择的内容==>', e)
+    // console.log('输出选择的内容==>', e)
     wx.navigateTo({
       url: '../today-bill/index?day=' + e.detail.value,
     })
