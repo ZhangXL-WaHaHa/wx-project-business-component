@@ -3,8 +3,7 @@
  *  */
 export default {
   /* 成员基本信息 */
-  memberInfo: [
-    {
+  memberInfo: [{
       name: '张晓立',
     },
     {
@@ -19,16 +18,15 @@ export default {
   priceInfo: [
     {
       price: 13,
-	  
-	  name: 13,  //用在弹出框显示
+      name: 13, //用在弹出框显示
     },
     {
       price: 12,
-	  name: 12
+      name: 12
     },
     {
       price: 15,
-	  name: 15
+      name: 15
     }
   ],
 
@@ -40,12 +38,12 @@ export default {
 
   /* 一周的点单的详情 */
   weekOrderList: null,
-  
+
   /**
    * 一天的订单详情
    */
   dayOrderList: {
-	  
+
   },
 
   /* 星期对应关系 */

@@ -50,6 +50,13 @@ Component({
         index: e.currentTarget.dataset.index,
         key: e.currentTarget.dataset.type,
       })
+    },
+    
+    /**
+     * 输入内容
+     */
+    valueInput(e) {
+      this.triggerEvent('input', e.detail.value)
     }
   }
 })

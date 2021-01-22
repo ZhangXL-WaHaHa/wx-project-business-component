@@ -19,7 +19,7 @@
           class="client-name text-center-none border-right"
           style="width: {{array.width || ''}}"
           wx:if="{{ array.type === 'input' }}">
-          <input placeholder="请输入成员名字" class="input"/>
+          <input placeholder="请输入{{ array.name }}" class="input" bindinput="valueInput"/>
         </view>
         <view wx:if="{{ array.type === 'button' }}" class="flex-row">
           <view wx:for="{{ operationBtn }}" wx:for-index="temp">
