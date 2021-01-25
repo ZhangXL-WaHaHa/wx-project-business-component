@@ -183,5 +183,15 @@ Page({
     wx.navigateTo({
       url: 'week-bill/index',
     })
+  },
+
+    
+  /**
+   * 手动清空账单信息（上周的账单这周才开始算，导致账单变为这周的账单）
+   */
+  emptyInfo() {
+    event.setStorage({
+      exprie_at: endTimeStamp
+    }, 'order_week')
   }
 })

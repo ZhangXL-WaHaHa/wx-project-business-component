@@ -3,25 +3,14 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var component_1 = require('../common/component');
 var touch_1 = require('../mixins/touch');
 var utils_1 = require('../common/utils');
+var validator_1 = require('../common/validator');
+var relation_1 = require('../common/relation');
 component_1.VantComponent({
   mixins: [touch_1.touch],
   classes: ['nav-class', 'tab-class', 'tab-active-class', 'line-class'],
-  relation: {
-    name: 'tab',
-    type: 'descendant',
-    current: 'tabs',
-    linked: function (target) {
-      target.index = this.children.length - 1;
-      this.updateTabs();
-    },
-    unlinked: function () {
-      this.children = this.children.map(function (child, index) {
-        child.index = index;
-        return child;
-      });
-      this.updateTabs();
-    },
-  },
+  relation: relation_1.useChildren('tab', function () {
+    this.updateTabs();
+  }),
   props: {
     sticky: Boolean,
     border: Boolean,
@@ -39,16 +28,16 @@ component_1.VantComponent({
       },
     },
     lineWidth: {
-      type: [String, Number],
+      type: null,
       value: 40,
-      observer: 'setLine',
+      observer: 'resize',
     },
     lineHeight: {
-      type: [String, Number],
+      type: null,
       value: -1,
     },
     active: {
-      type: [String, Number],
+      type: null,
       value: 0,
       observer: function (name) {
         if (name !== this.getCurrentName()) {
@@ -92,10 +81,8 @@ component_1.VantComponent({
   },
   data: {
     tabs: [],
-    lineStyle: '',
     scrollLeft: 0,
     scrollable: false,
-    trackStyle: '',
     currentIndex: 0,
     container: null,
     skipTransition: true,
@@ -103,20 +90,17 @@ component_1.VantComponent({
   },
   mounted: function () {
     var _this = this;
-    wx.nextTick(function () {
-      _this.setLine(true);
-      _this.scrollIntoView();
-    });
-  },
-  methods: {
-    updateContainer: function () {
-      var _this = this;
-      this.setData({
+    utils_1.requestAnimationFrame(function () {
+      _this.setData({
         container: function () {
           return _this.createSelectorQuery().select('.van-tabs');
         },
       });
-    },
+      _this.resize(true);
+      _this.scrollIntoView();
+    });
+  },
+  methods: {
     updateTabs: function () {
       var _a = this,
         _b = _a.children,
@@ -129,12 +113,12 @@ component_1.VantComponent({
         scrollable:
           this.children.length > data.swipeThreshold || !data.ellipsis,
       });
-      this.setCurrentIndexByName(this.getCurrentName() || data.active);
+      this.setCurrentIndexByName(data.active || this.getCurrentName());
     },
     trigger: function (eventName, child) {
       var currentIndex = this.data.currentIndex;
       var currentChild = child || this.children[currentIndex];
-      if (!utils_1.isDef(currentChild)) {
+      if (!validator_1.isDef(currentChild)) {
         return;
       }
       this.$emit(eventName, {
@@ -151,7 +135,7 @@ component_1.VantComponent({
         this.trigger('disabled', child);
       } else {
         this.setCurrentIndex(index);
-        wx.nextTick(function () {
+        utils_1.nextTick(function () {
           _this.trigger('click');
         });
       }
@@ -174,27 +158,28 @@ component_1.VantComponent({
         _b = _a.children,
         children = _b === void 0 ? [] : _b;
       if (
-        !utils_1.isDef(currentIndex) ||
+        !validator_1.isDef(currentIndex) ||
         currentIndex >= children.length ||
         currentIndex < 0
       ) {
         return;
       }
-      children.forEach(function (item, index) {
-        var active = index === currentIndex;
-        if (active !== item.data.active || !item.inited) {
-          item.updateRender(active, _this);
-        }
+      utils_1.groupSetData(this, function () {
+        children.forEach(function (item, index) {
+          var active = index === currentIndex;
+          if (active !== item.data.active || !item.inited) {
+            item.updateRender(active, _this);
+          }
+        });
       });
       if (currentIndex === data.currentIndex) {
         return;
       }
       var shouldEmitChange = data.currentIndex !== null;
       this.setData({ currentIndex: currentIndex });
-      wx.nextTick(function () {
-        _this.setLine();
+      utils_1.nextTick(function () {
+        _this.resize();
         _this.scrollIntoView();
-        _this.updateContainer();
         _this.trigger('input');
         if (shouldEmitChange) {
           _this.trigger('change');
@@ -207,7 +192,7 @@ component_1.VantComponent({
         return activeTab.getComputedName();
       }
     },
-    setLine: function (skipTransition) {
+    resize: function (skipTransition) {
       var _this = this;
       if (skipTransition === void 0) {
         skipTransition = false;
@@ -215,10 +200,12 @@ component_1.VantComponent({
       if (this.data.type !== 'line') {
         return;
       }
-      var currentIndex = this.data.currentIndex;
+      var _a = this.data,
+        currentIndex = _a.currentIndex,
+        ellipsis = _a.ellipsis;
       Promise.all([
-        utils_1.getAllRect.call(this, '.van-tab'),
-        utils_1.getRect.call(this, '.van-tabs__line'),
+        utils_1.getAllRect(this, '.van-tab'),
+        utils_1.getRect(this, '.van-tabs__line'),
       ]).then(function (_a) {
         var _b = _a[0],
           rects = _b === void 0 ? [] : _b,
@@ -232,7 +219,8 @@ component_1.VantComponent({
           .reduce(function (prev, curr) {
             return prev + curr.width;
           }, 0);
-        lineOffsetLeft += (rect.width - lineRect.width) / 2;
+        lineOffsetLeft +=
+          (rect.width - lineRect.width) / 2 + (ellipsis ? 0 : 8);
         _this.setData({
           lineOffsetLeft: lineOffsetLeft,
           skipTransition: skipTransition,
@@ -249,8 +237,8 @@ component_1.VantComponent({
         return;
       }
       Promise.all([
-        utils_1.getAllRect.call(this, '.van-tab'),
-        utils_1.getRect.call(this, '.van-tabs__nav'),
+        utils_1.getAllRect(this, '.van-tab'),
+        utils_1.getRect(this, '.van-tabs__nav'),
       ]).then(function (_a) {
         var tabRects = _a[0],
           navRect = _a[1];

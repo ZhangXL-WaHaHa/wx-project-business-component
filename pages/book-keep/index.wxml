@@ -4,4 +4,6 @@
   <button bindtap="showWeekBill" class="mt-20">操作本周订单信息</button>
   <button bindtap="showPriceInfo" class="mt-20">操作价格信息</button>
   <button bindtap="showMemberInfo" class="mt-20">操作成员信息</button>
+
+  <button bindtap="emptyInfo" class="mt-20">手动清空本周账单</button>
 </view>
