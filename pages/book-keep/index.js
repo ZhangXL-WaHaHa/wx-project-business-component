@@ -185,11 +185,13 @@ Page({
     })
   },
 
-    
+
   /**
    * 手动清空账单信息（上周的账单这周才开始算，导致账单变为这周的账单）
    */
   emptyInfo() {
+    // 获取本周订单过期时间
+    const endTimeStamp = this.getExpireTime()
     event.setStorage({
       exprie_at: endTimeStamp
     }, 'order_week')
