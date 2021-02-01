@@ -43,14 +43,23 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
+    "plugin": {
       "list": []
     },
-    "conversation": {
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "导航球",
+          "pathName": "pages/navigate-ball/index",
+          "scene": null
+        }
+      ]
     }
   }
 }

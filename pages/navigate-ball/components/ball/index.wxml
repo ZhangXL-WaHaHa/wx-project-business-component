@@ -1,2 +1,5 @@
-<!--pages/navigate-ball/components/ball/index.wxml-->
-<text>pages/navigate-ball/components/ball/index.wxml</text>
+<!-- 可移动导航栏，详细介绍暂无 -->
+<!-- 使用可移动的视图容器 -->
+<movable-area class="movable-container">
+  <movable-view class="navigate-ball" direction="all"></movable-view>
+</movable-area>

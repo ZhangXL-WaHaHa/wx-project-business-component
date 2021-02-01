@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "ball": "./components/ball/index"
+  }
 }

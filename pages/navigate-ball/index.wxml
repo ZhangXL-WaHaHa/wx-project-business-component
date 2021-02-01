@@ -1,3 +1,4 @@
 <!--pages/navigate-ball/index.wxml-->
-<view>
+<view class="container">
+  <ball></ball>
 </view>
