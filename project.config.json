@@ -43,14 +43,30 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
+    "plugin": {
       "list": []
     },
-    "conversation": {
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "api的使用",
+          "pathName": "pages/api-use/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/api-use/index",
+          "pathName": "pages/api-use/index",
+          "query": "",
+          "scene": null
+        }
+      ]
     }
   }
 }

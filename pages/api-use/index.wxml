@@ -1,0 +1,6 @@
+<!--pages/api-use/index.wxml-->
+<view class="container">
+	<button bindtap="oneClickLinkWifi" class="btn">一键链接wifi</button>
+
+	<!-- <button bindtap="simulateUpdate" class="btn">模拟更新</button> -->
+</view>

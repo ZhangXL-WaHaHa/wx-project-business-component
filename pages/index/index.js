@@ -90,5 +90,14 @@ Page({
 		wx.navigateTo({
 			url: '../download-file/index',
 		})
+	},
+
+	/**
+	 * 使用一些自己不常使用的api
+	 */
+	handleApi() {
+		wx.navigateTo({
+			url: '../api-use/index',
+		})
 	}
 })

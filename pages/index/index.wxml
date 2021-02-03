@@ -4,4 +4,6 @@
 	<button bindtap="handleTransparentBar" class="btn">透明渐变导航栏</button>
 	<button bindtap="handleSlideCalendar" class="btn">滑动日历</button>
 	<button bindtap="handleDownLoadFile" class="btn">下载保存</button>
+
+	<button bindtap="handleApi" class="btn">冷门api的应用</button>
 </view>
