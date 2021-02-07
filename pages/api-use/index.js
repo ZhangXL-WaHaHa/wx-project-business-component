@@ -9,8 +9,8 @@ Page({
      * 设置wifi信息
      */
     wifiInfo: {
-      name: 'YG',
-      password: 'Yunge2019'
+      name: '',
+      password: ''
     }
   },
 

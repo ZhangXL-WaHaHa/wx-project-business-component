@@ -15,6 +15,7 @@
 <scroll-view 
 	scroll-y style="height: {{pageHeight}}px;background-color: #F5F5F5;" data-value="{{scrollHeight}}"
 	bindscroll="{{navigate.pageScroll}}">
+	
 	<!-- 设置长度为1px的细线在顶部，解决有时滚动过快时，没有监听到滚动到顶部的官方bug -->
 	<view class="scroll-monitor-line" wx:if="{{ platform !== 'ios' }}"></view>
 	<view class="scroll-monitor-line-leave" style="top: {{ monitorLeaveLine }}px" wx:if="{{ platform !== 'ios' }}"></view>
