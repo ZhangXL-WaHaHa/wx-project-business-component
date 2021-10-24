@@ -6,4 +6,5 @@
 	<button bindtap="handleDownLoadFile" class="btn">下载保存</button>
 
 	<button bindtap="handleApi" class="btn">冷门api的应用</button>
+	<button bindtap="handleLongList" class="btn">长列表的研究</button>
 </view>

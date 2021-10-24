@@ -1,0 +1,35 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "api的使用",
+          "pathName": "pages/api-use/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/api-use/index",
+          "pathName": "pages/api-use/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "长列表",
+          "pathName": "pages/long-list/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

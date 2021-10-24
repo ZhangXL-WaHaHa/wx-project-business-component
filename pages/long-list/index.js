@@ -5,7 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //测试视频列表
+    videoList: [
+      {
+        "typeid": 1,
+        "videoimg": "../../images/p001.png",
+        "videoname": "测试视频1",
+        "videourl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+      },
+      {
+        "typeid": 2,
+        "videoimg": "../../images/p002.png",
+        "videoname": "测试视频2",
+        "videourl": "http://www.w3school.com.cn/example/html5/mov_bbb.mp4"
+      },
+    ],
 
+    viewoScrollToIndex: 0, // 长列表滚动项
   },
 
   /**
@@ -62,5 +78,31 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+ * 开始点击
+ */
+  clickStart(e) {
+    console.log('开始点击==>', e)
+  },
+
+  /**
+   * 开始移动
+   */
+  move(e) {
+    console.log('移动==>', e)
+  },
+
+  /**
+   * 停止
+   */
+  clickStop(e) {
+    const index = ++e.currentTarget.dataset.index
+    console.log('停止点击==>', e, index)
+
+    if (index >= this.data.videoList.length) { return }
+
+    this.setData({ videoScrollToIndex: index })
   }
 })

@@ -99,5 +99,14 @@ Page({
 		wx.navigateTo({
 			url: '../api-use/index',
 		})
+	},
+
+	/**
+	 * 长列表的研究
+	 */
+	handleLongList() {
+		wx.navigateTo({
+			url: '../long-list/index',
+		})
 	}
 })

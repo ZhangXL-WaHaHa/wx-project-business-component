@@ -1,2 +1,10 @@
-<!--pages/long-list/index.wxml-->
-<text>pages/long-list/index.wxml</text>
+<view class="video_container">
+  <recycle-view batch="{{batchSetRecycleData}}" id="recycleId" scroll-to-index="{{ videoScrollToIndex }}" scroll-with-animation="{{ true }}">
+    <recycle-item wx:for="{{videoList}}" wx:key="id">
+      <view class="video-item-container" bindtouchstart="clickStart" bindtouchend="clickStop" data-index="{{ index }}">
+        <view>这是{{ index + 1 }}项</view>
+        <video src="{{ item.videoUrl }}" />
+      </view>
+    </recycle-item>
+  </recycle-view>
+</view>
