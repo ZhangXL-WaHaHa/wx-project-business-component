@@ -6,7 +6,8 @@
     "pages/transparent-bar/index",
     "pages/slide-calendar/index",
     "pages/download-file/index",
-    "pages/api-use/index"
+    "pages/api-use/index",
+    "pages/long-list/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
