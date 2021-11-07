@@ -1,19 +1,14 @@
 /**index.wxss**/
-page{
-  width: 100%;
-  height: 100%;
+page {
+  -webkit-overflow-scrolling: auto !important;
 }
-.video_container {
-  width: 100%;
-  height: 100%;
-} 
 
-
-.video-item-container {
-  background-color: red;
+.placeholder-box {
+  position: relative;
+  z-index: 0;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  opacity: .3;
 }

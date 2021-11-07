@@ -15,7 +15,7 @@
     <view wx:for="{{list}}" wx:key="{{index}}" data-index="{{index}}" id="feed-parent-{{ index }}">
       <block wx:if="{{ item.show }}">
         <view wx:for="{{ item.data }}" wx:for-item="feed" wx:for-index="childIndex" class="feed-item" id="feed-item-{{ index }}-{{ childIndex }}">
-          <feed-item id="{{ feed.item.video ? 'feed-' + feed.item.id : 'feed-image-' + feed.item.id }}" feed="{{feed.item}}" wx:if="{{feed.type === 1}}" />
+          <topic-item topic="{{feed.item}}" groupIndex="{{ index }}" index="{{ childIndex }}" />
         </view>
       </block>
     </view>>
@@ -53,7 +53,7 @@
     <view wx:for="{{list}}" wx:key="{{index}}" data-index="{{index}}" id="feed-parent-{{ index }}">
       <block wx:if="{{ item.show }}">
         <view wx:for="{{ item.data }}" wx:for-item="feed" wx:for-index="childIndex" class="feed-item" id="feed-item-{{ index }}-{{ childIndex }}" data-video="{{ !!feed.item.video }}">
-          <feed-item id="{{ 'feed-' + feed.item.id }}" feed="{{feed.item}}" wx:if="{{feed.type === 1}}" />
+          <topic-item topic="{{feed.item}}" groupIndex="{{ index }}" index="{{ childIndex }}" />
         </view>
       </block>
     </view>
