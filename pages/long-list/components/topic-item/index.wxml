@@ -1,0 +1,5 @@
+<!--pages/long-list/components/topic-item/index.wxml-->
+<view class="container">
+  <image mode="aspectFill" src="{{ topic.src }}" class="cover" style="height: {{topic.height}}px" />
+  <view class="text">这是第{{groupIndex}}组，第{{ index }}个</view>
+</view>

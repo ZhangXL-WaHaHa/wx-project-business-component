@@ -1,0 +1,9 @@
+module.exports = {
+  /**
+     * 格式化骨架屏显示的数量
+     * @param {Number} scrollHeight
+     */
+  formatterSkeletonShow: function (scrollHeight) {
+    return Math.floor(scrollHeight / 400)
+  }
+}

@@ -1,0 +1,13 @@
+/* pages/long-list/components/topic-item/index.wxss */
+.container {
+  background-color: lightgreen;
+  padding: 10px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+.text {
+  color: #fff
+}
+.cover {
+  width: 300px;
+}
