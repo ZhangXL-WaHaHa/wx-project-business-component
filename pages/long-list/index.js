@@ -24,6 +24,7 @@ Page({
       startTimeStamp: '', // 手指点击的时间，用于判断用户是快滑还是慢滑
 
       show_index: 0, // 当前页面显示的数据分组下标
+      max_show_num: 3, // 每组的数据量
     },
     showPageBlock: false, // 设置顶部蒙层，阻止用户操作，目的是为了解决ios播放视频的瞬间用户操作屏幕出现的bug
     isIos: getApp().globalData.systemInfo.platform === 'ios', // 是否是ios系统，由于Android和ios表现有差异，故需要区分
@@ -120,9 +121,7 @@ Page({
    * 处理滚动，视频自动播放
    * @param e
    */
-  handleAutoPlay(e) {
-
-  },
+  handleAutoPlay(e) {},
 
   /**
    * 获取列表
@@ -175,7 +174,7 @@ Page({
     const index = this.data.list.length // 需要设置的index
     let new_list = []
     for (; list.length !== 0;) {
-      new_list = list.splice(5)
+      new_list = list.splice(this.data.topicScroll.max_show_num)
       this.data.list.push({
         data: list,
         show: false
@@ -190,7 +189,7 @@ Page({
         list: this.data.list,
       }
     } else {
-      for (let i = index; i <= index + 3; i++) {
+      for (let i = index; i <= index + 20; i++) {
         if (this.data.list[i] && this.data.list[i].data) {
           render_data[`list[${i}].data`] = this.data.list[i].data
           render_data[`list[${i}].show`] = false
@@ -339,7 +338,7 @@ Page({
     const can_move = (diffTime < 100 && diffY > 50) || (diffTime >= 100 && diffY > 80) // 是否可以滑动，手势滑动判断依据
     if (can_move) {
       if (direction) {
-        if (scrollInfo.child_index === 4) {
+        if (scrollInfo.child_index === this.data.topicScroll.max_show_num - 1) {
           ++scrollInfo.parent_index
           scrollInfo.child_index = 0
         } else {
@@ -348,7 +347,7 @@ Page({
       } else {
         if (scrollInfo.child_index === 0) {
           --scrollInfo.parent_index
-          scrollInfo.child_index = 4
+          scrollInfo.child_index = this.data.topicScroll.max_show_num - 1
         } else {
           --scrollInfo.child_index
         }
@@ -400,7 +399,7 @@ Page({
       },
       complete: () => {
         // this.selectComponent(pausePlayId) && this.selectComponent(pausePlayId).pauseVideo()
-        if (scrollInfo.child_index === 4 || scrollInfo.child_index === 0) {
+        if (scrollInfo.child_index === this.data.topicScroll.max_show_num - 1 || scrollInfo.child_index === 0) {
           this._dealListShow(scrollInfo.parent_index) // 显示分组发生变化，重置需要渲染的分组
         }
       }
@@ -456,7 +455,7 @@ Page({
 
     this.data.scrollBoxInfo.scrollView.scrollTo({
       top: scrollTop,
-      velocity: .5,
+      velocity: .1,
       duration: 200
     })
 
@@ -465,7 +464,7 @@ Page({
       // 3. 处理暂停视频播放，重新渲染分组 && 自动播放视频等操作
       // this.selectComponent(pausePlayId) && this.selectComponent(pausePlayId).pauseVideo()
 
-      if (scrollInfo.child_index === 4 || scrollInfo.child_index === 0) {
+      if (scrollInfo.child_index === this.data.topicScroll.max_show_num || scrollInfo.child_index === 0) {
         this._dealListShow(scrollInfo.parent_index) // 显示分组发生变化，重置需要渲染的分组
       }
 
@@ -522,29 +521,5 @@ Page({
     if (this.data.list.length && this.data.list.length > 1) {
       this.getList()
     }
-  },
-
-  /**
-   * 点击显示弹出框
-   * @param {Object} e 话题信息
-   */
-  showComment(e) {
-    this.setData({
-      'comment.show': true,
-      'comment.data': e.detail
-    })
-  },
-
-  /**
-   * 选中起泡
-   * @param {Object} e 选中信息
-   */
-  onChangeBubble(e) {
-    // 获取对应的话题组件实例
-    const info = this.data.comment.data
-    const id = info.video ? '#feed-' + info.id : '#feed-image-' + info.id
-    const element = this.selectComponent(id)
-
-    element.onChangeBubble(e)
-  },
+  }
 })
