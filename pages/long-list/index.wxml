@@ -1,61 +1,149 @@
 <wxs module="skeleton" src="./numberUtil.wxs" />
 <view>
-  <!-- 分为ios 和 Android两个版本，由于Android使用到的scroll-view存在版本库兼容问题，故分为两个版本 -->
+    <!-- 分为ios 和 Android两个版本，由于Android使用到的scroll-view存在版本库兼容问题，故分为两个版本 -->
 
-  <!-- ios版本 -->
-  <view wx:if="{{ isIos }}" class="feed-list" bindtouchstart="touchStart" bindtouchend="iosTouchEnd">
-
-    <!-- 占位框，用来替代不渲染的数据高度 -->
-    <view wx:if="{{ list.length }}" id="placeholderBox" class="placeholder-box" style="height: {{ placeholderBoxHeight }}px;">
-      <!-- 显示骨架屏 -->
-      <van-skeleton title row="6" wx:for="{{ skeleton.formatterSkeletonShow(placeholderBoxHeight) }}" />
-    </view>
-
-    <!-- 二位数据渲染数据 -->
-    <view wx:for="{{list}}" wx:key="{{index}}" data-index="{{index}}" id="feed-parent-{{ index }}">
-      <block wx:if="{{ item.show }}">
-        <view wx:for="{{ item.data }}" wx:for-item="feed" wx:for-index="childIndex" class="feed-item" id="feed-item-{{ index }}-{{ childIndex }}">
-          <topic-item topic="{{feed.item}}" groupIndex="{{ index }}" index="{{ childIndex }}" />
+    <!-- ios版本 -->
+    <view
+        wx:if="{{ isIos }}"
+        class="feed-list"
+        bindtouchstart="touchStart"
+        bindtouchend="iosTouchEnd"
+    >
+        <!-- 占位框，用来替代不渲染的数据高度 -->
+        <view
+            wx:if="{{ list.length }}"
+            id="placeholderBox"
+            class="placeholder-box"
+            style="height: {{ placeholderBoxHeight }}px;"
+        >
+            <!-- 显示骨架屏 -->
+            <van-skeleton
+                title
+                row="6"
+                wx:for="{{ skeleton.formatterSkeletonShow(placeholderBoxHeight) }}"
+            />
         </view>
-      </block>
-    </view>>
-  </view>
 
-  <!-- android scroll-view版本  需要将基础库升级到2.14.4，应该是android版本为7.0.22以上 -->
-  <scroll-view wx:elif="{{ scrollBoxInfo.canUseScrollBox && !isIos }}" scroll-y enhanced id="scrollView" style="height: {{ scrollBoxInfo.scrollHeight }}px" refresher-enabled="{{ true }}" refresher-triggered="{{ scrollBoxInfo.refreshStatus }}" refresher-default-style="white" enable-back-to-top="{{ false }}" class="scroll-box" bindrefresherrefresh="scrollViewRefresh" bindscrolltolower="scrollToLower">
-
-    <!-- 占位框，用来替代不渲染的数据高度，用于性能优化的操作 -->
-    <view wx:if="{{ list.length }}" id="placeholderBox" class="placeholder-box" style="height: {{ placeholderBoxHeight }}px;">
-      <!-- 显示骨架屏 -->
-      <van-skeleton title row="6" wx:for="{{ skeleton.formatterSkeletonShow(placeholderBoxHeight) }}" />
+        <!-- 二位数据渲染数据 -->
+        <view
+            wx:for="{{list}}"
+            wx:key="{{index}}"
+            data-index="{{index}}"
+            id="feed-parent-{{ index }}"
+        >
+            <block wx:if="{{ item.show }}">
+                <view
+                    wx:for="{{ item.data }}"
+                    wx:for-item="feed"
+                    wx:for-index="childIndex"
+                    class="feed-item"
+                    id="feed-item-{{ index }}-{{ childIndex }}"
+                >
+                    <topic-item
+                        topic="{{feed.item}}"
+                        groupIndex="{{ index }}"
+                        index="{{ childIndex }}"
+                    />
+                </view>
+            </block> </view
+        >>
     </view>
 
-    <!-- 二位数据渲染数据 -->
-    <view bindtouchstart="touchStart" bindtouchend="iosTouchEnd">
-      <view wx:for="{{list}}" wx:key="{{index}}" data-index="{{index}}" id="feed-parent-{{ index }}">
-        <block wx:if="{{ item.show }}">
-          <view wx:for="{{ item.data }}" wx:for-item="feed" wx:for-index="childIndex" class="feed-item" id="feed-item-{{ index }}-{{ childIndex }}">
-            <topic-item topic="{{feed.item}}" groupIndex="{{ index }}" index="{{ childIndex }}" />
-          </view>
-        </block>
-      </view>
-    </view>
-    <!-- 占用底部位置，解决最后一个帖子高度不足的问题 -->
-    <view class="scroll-box-footer" />
-  </scroll-view>
-
-  <!-- android版本 平滑滚动版本 -->
-  <view wx:if="{{ !scrollBoxInfo.canUseScrollBox && !isIos }}" class="feed-list">
-    <!-- 占位框，用来替代不渲染的数据高度，用于性能优化的操作 -->
-    <view wx:if="{{ list.length }}" id="placeholderBox" class="placeholder-box" style="height: {{ placeholderBoxHeight }}px;" />
-
-    <!-- 二位数据渲染数据 -->
-    <view wx:for="{{list}}" wx:key="{{index}}" data-index="{{index}}" id="feed-parent-{{ index }}">
-      <block wx:if="{{ item.show }}">
-        <view wx:for="{{ item.data }}" wx:for-item="feed" wx:for-index="childIndex" class="feed-item" id="feed-item-{{ index }}-{{ childIndex }}" data-video="{{ !!feed.item.video }}">
-          <topic-item topic="{{feed.item}}" groupIndex="{{ index }}" index="{{ childIndex }}" />
+    <!-- android scroll-view版本  需要将基础库升级到2.14.4，应该是android版本为7.0.22以上 -->
+    <scroll-view
+        wx:elif="{{ scrollBoxInfo.canUseScrollBox && !isIos }}"
+        scroll-y
+        enhanced
+        id="scrollView"
+        style="height: {{ scrollBoxInfo.scrollHeight }}px"
+        refresher-enabled="{{ true }}"
+        refresher-triggered="{{ scrollBoxInfo.refreshStatus }}"
+        refresher-default-style="white"
+        enable-back-to-top="{{ false }}"
+        class="scroll-box"
+        bindrefresherrefresh="scrollViewRefresh"
+        bindscrolltolower="scrollToLower"
+    >
+        <!-- 占位框，用来替代不渲染的数据高度，用于性能优化的操作 -->
+        <view
+            wx:if="{{ list.length }}"
+            id="placeholderBox"
+            class="placeholder-box"
+            style="height: {{ placeholderBoxHeight }}px;"
+        >
+            <!-- 显示骨架屏 -->
+            <van-skeleton
+                title
+                row="6"
+                wx:for="{{ skeleton.formatterSkeletonShow(placeholderBoxHeight) }}"
+            />
         </view>
-      </block>
+
+        <!-- 二位数据渲染数据 -->
+        <view bindtouchstart="touchStart" bindtouchend="iosTouchEnd">
+            <view
+                wx:for="{{list}}"
+                wx:key="{{index}}"
+                data-index="{{index}}"
+                id="feed-parent-{{ index }}"
+            >
+                <block wx:if="{{ item.show }}">
+                    <view
+                        wx:for="{{ item.data }}"
+                        wx:for-item="feed"
+                        wx:for-index="childIndex"
+                        class="feed-item"
+                        id="feed-item-{{ index }}-{{ childIndex }}"
+                    >
+                        <topic-item
+                            topic="{{feed.item}}"
+                            groupIndex="{{ index }}"
+                            index="{{ childIndex }}"
+                        />
+                    </view>
+                </block>
+            </view>
+        </view>
+        <!-- 占用底部位置，解决最后一个帖子高度不足的问题 -->
+        <view class="scroll-box-footer" />
+    </scroll-view>
+
+    <!-- android版本 平滑滚动版本 -->
+    <view
+        wx:if="{{ !scrollBoxInfo.canUseScrollBox && !isIos }}"
+        class="feed-list"
+    >
+        <!-- 占位框，用来替代不渲染的数据高度，用于性能优化的操作 -->
+        <view
+            wx:if="{{ list.length }}"
+            id="placeholderBox"
+            class="placeholder-box"
+            style="height: {{ placeholderBoxHeight }}px;"
+        />
+
+        <!-- 二位数据渲染数据 -->
+        <view
+            wx:for="{{list}}"
+            wx:key="{{index}}"
+            data-index="{{index}}"
+            id="feed-parent-{{ index }}"
+        >
+            <block wx:if="{{ item.show }}">
+                <view
+                    wx:for="{{ item.data }}"
+                    wx:for-item="feed"
+                    wx:for-index="childIndex"
+                    class="feed-item"
+                    id="feed-item-{{ index }}-{{ childIndex }}"
+                    data-video="{{ !!feed.item.video }}"
+                >
+                    <topic-item
+                        topic="{{feed.item}}"
+                        groupIndex="{{ index }}"
+                        index="{{ childIndex }}"
+                    />
+                </view>
+            </block>
+        </view>
     </view>
-  </view>
 </view>
