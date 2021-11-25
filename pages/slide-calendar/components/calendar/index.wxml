@@ -4,55 +4,100 @@
 <!-- 2.根据getDay()函数计算出当前月份1号是星期几 -->
 <!-- 3.根据1号是周几计算出上个月的残余天数，根据第一行显示多少个本月数据，计算出最后一行显示多少个，从而得到下月的残余天数 -->
 <view class="calendar-container">
-	<!-- 日历开头 -->
-	<view>
-		<view wx:if="{{ showTitle }}" class="calendar-title">{{ title }}</view>
-		<!-- 副标题 -->
-		<view class="calnedar-subtitle-box">
-			<image src="/static/img/arrow-left.png" class="calendar-icon-next" bindtap="showLastMonth"></image>
-			<view class="calendar-subtitle">{{ subTitle.year + '年' + subTitle.month + '月' }}</view>
-			<image src="/static/img/arrow-right.png" class="calendar-icon-last" bindtap="showNextMonth"></image>
-		</view>
-		<!-- 一周 -->
-		<view class="calendar-week-box">
-			<view wx:for="{{ weekList }}" wx:key="*this" class="calendar-week-item">
-				<view class="calendar-week-text {{item.type === 'cur'}}">{{ item }}</view>
-			</view>
-		</view>
-	</view>
+    <!-- 日历开头 -->
+    <view>
+        <view wx:if="{{ showTitle }}" class="calendar-title">{{ title }}</view>
+        <!-- 副标题 -->
+        <view class="calnedar-subtitle-box">
+            <image
+                src="/static/img/arrow-left.png"
+                class="calendar-icon-next"
+                bindtap="showLastMonth"
+            ></image>
+            <view class="calendar-subtitle"
+                >{{ subTitle.year + '年' + subTitle.month + '月' }}</view
+            >
+            <image
+                src="/static/img/arrow-right.png"
+                class="calendar-icon-last"
+                bindtap="showNextMonth"
+            ></image>
+        </view>
+        <!-- 一周 -->
+        <view class="calendar-week-box">
+            <view
+                wx:for="{{ weekList }}"
+                wx:key="*this"
+                class="calendar-week-item"
+            >
+                <view class="calendar-week-text {{item.type === 'cur'}}"
+                    >{{ item }}</view
+                >
+            </view>
+        </view>
+    </view>
 
-	<!-- 日历详情部分 -->
-	<swiper circular="{{ true }}" current="{{showCalendarIndex}}" id="calendar"
-		style="height: {{calendarInfo[dayType[showCalendarIndex]].swiperHeight}}rpx">
-		<block wx:for="{{calendarInfo}}" wx:for-item="arr" wx:for-index="temp">
-			<swiper-item catchtouchmove="gestureSlide">
-				<view class="calendar-data-box">
-					<view wx:for="{{ arr.list }}" class="calendar-data-item calendar-data-color-{{item.color}}"
-						data-index="{{index}}" data-type="{{item.type}}" data-key="{{temp}}" bindtap="selectDate">
-						<view class="calendar-data-text {{item.type === 'cur' ? 'calendar-data-cur-text' : ''}}">{{ item.value }}
-						</view>
-						<!--	不同类型的提示文案		-->
-						<view 
-							wx:if="{{item.tip.type === 'text'}}" class="calendar-data-text-tip line-1"
-							style="color: {{item.tip.color || '#999999'}}">{{item.tip.text}}</view>
-						<view 
-							wx:if="{{item.tip.type === 'tag'}}" class="calendar-data-tag-tip"
-							style="background-color: {{item.tip.color || 'lightgreen'}};">{{item.tip.text}}</view>
+    <!-- 日历详情部分 -->
+    <swiper
+        circular="{{ true }}"
+        current="{{showCalendarIndex}}"
+        id="calendar"
+        style="height: {{calendarInfo[dayType[showCalendarIndex]].swiperHeight}}rpx"
+    >
+        <block wx:for="{{calendarInfo}}" wx:for-item="arr" wx:for-index="temp">
+            <swiper-item catchtouchmove="gestureSlide">
+                <view class="calendar-data-box">
+                    <view
+                        wx:for="{{ arr.list }}"
+                        class="calendar-data-item calendar-data-color-{{item.color}}"
+                        data-index="{{index}}"
+                        data-type="{{item.type}}"
+                        data-key="{{temp}}"
+                        bindtap="selectDate"
+                    >
+                        <view
+                            class="calendar-data-text {{item.type === 'cur' ? 'calendar-data-cur-text' : ''}}"
+                            >{{ item.value }}
+                        </view>
+                        <!--	不同类型的提示文案		-->
+                        <view
+                            wx:if="{{item.tip.type === 'text'}}"
+                            class="calendar-data-text-tip line-1"
+                            style="color: {{item.tip.color || '#999999'}}"
+                            >{{item.tip.text}}</view
+                        >
+                        <view
+                            wx:if="{{item.tip.type === 'tag'}}"
+                            class="calendar-data-tag-tip"
+                            style="background-color: {{item.tip.color || 'lightgreen'}};"
+                            >{{item.tip.text}}</view
+                        >
 
-						<!-- 显示起始文案 -->
-						<view 
-							wx:if="{{item.rangTip && item.rangTip !== ''}}" 
-							class="calendar-data-rang-tip {{item.rangTip === selectDateRange.beginText ? 'calendar-begin-rang-tip-radius' : 'calendar-end-rang-tip-radius'}}">{{item.rangTip}}</view>
-					</view>
+                        <!-- 显示起始文案 -->
+                        <view
+                            wx:if="{{item.rangTip && item.rangTip !== ''}}"
+                            class="calendar-data-rang-tip {{item.rangTip === selectDateRange.beginText ? 'calendar-begin-rang-tip-radius' : 'calendar-end-rang-tip-radius'}}"
+                            >{{item.rangTip}}</view
+                        >
+                    </view>
 
-					<!-- 显示月份水印 -->
-					<view wx:if="{{showMark}}" class="calendar-data-month-mark">{{subTitle.month}}</view>
-				</view>
-			</swiper-item>
-		</block>
-	</swiper>
+                    <!-- 显示月份水印 -->
+                    <view wx:if="{{showMark}}" class="calendar-data-month-mark"
+                        >{{subTitle.month}}</view
+                    >
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
 
-	<!-- 底部按钮 -->
-	<button wx:if="{{showButton || calendarType === 'multiple'}}" hover-class="calendar-data-btn-hover" type="primary"
-		class="calendar-data-btn" bindtap="tapBtn">{{btnText}}</button>
+    <!-- 底部按钮 -->
+    <button
+        wx:if="{{showButton || calendarType === 'multiple'}}"
+        hover-class="calendar-data-btn-hover"
+        type="primary"
+        class="calendar-data-btn"
+        bindtap="tapBtn"
+    >
+        {{btnText}}
+    </button>
 </view>
